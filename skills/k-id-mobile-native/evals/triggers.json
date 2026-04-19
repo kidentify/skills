@@ -1,0 +1,37 @@
+{
+  "skill_name": "k-id-mobile-native",
+  "description_version": "1.0.0",
+  "runs_per_query": 3,
+  "threshold": {
+    "positive_trigger_rate": 0.5,
+    "near_miss_trigger_rate_max": 0.2
+  },
+  "should_trigger": [
+    "Add k-ID to our iOS Swift app.",
+    "Read the iOS Declared Age Range and pass it to /age-gate/check.",
+    "Add Google Play Families age signal support to our Android app.",
+    "Implement k-ID parental consent in our Unity game.",
+    "Verification opens Safari but never comes back to our iOS app.",
+    "Handle Family Connect deep link returns on Android.",
+    "We need US App Store Accountability Act support — how do we handle signals?",
+    "Which WebView should we use for the k-ID verification widget on iOS?",
+    "Can we use WKWebView to embed the k-ID age-verification widget?",
+    "Should we use Android WebView or Custom Tabs for the k-ID widget?",
+    "Why doesn't the AgeKey option appear in our Android verification flow?",
+    "How do we get the widget result back to our iOS app after verification completes?",
+    "Wire up a redirectUrl deep link for the CDK end-to-end widget on Android.",
+    "Our ConnectID verification doesn't return to the app from WKWebView.",
+    "Debug why the platform age signal isn't being passed to /age-gate/check on Android.",
+    "Wire up post-consent foreground refresh on iOS."
+  ],
+  "should_not_trigger": [
+    "Build the age gate slider for our web app.",
+    "Wire up /session/upgrade in our React app.",
+    "Handle webhook signatures on our Node.js backend.",
+    "Build the consent modal QR code.",
+    "Add timezone-based jurisdiction detection in the browser.",
+    "Implement server-side caching of /session/get.",
+    "Render permission-gated UI controls on a desktop web app.",
+    "Build an iframe verification modal for a Next.js app."
+  ]
+}

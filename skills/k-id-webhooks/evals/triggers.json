@@ -1,0 +1,31 @@
+{
+  "skill_name": "k-id-webhooks",
+  "description_version": "1.0.0",
+  "runs_per_query": 3,
+  "threshold": {
+    "positive_trigger_rate": 0.5,
+    "near_miss_trigger_rate_max": 0.2
+  },
+  "should_trigger": [
+    "Build a webhook endpoint for k-ID events.",
+    "Verify the X-Signature-Hmac-Sha256 header from k-ID.",
+    "Our Test webhook from Compliance Studio returns 401.",
+    "Handle Challenge.StateChange and Verification.Result events.",
+    "Our webhook signature check keeps failing — help debug.",
+    "Make our k-ID webhook endpoint idempotent.",
+    "Add replay protection to our webhook receiver.",
+    "How do I push Session.ChangePermissions into our session store?",
+    "What's the right response code for an invalid webhook signature?",
+    "Parse ParentalConsent.Granted and refresh the affected session."
+  ],
+  "should_not_trigger": [
+    "Poll /challenge/get-status inside our consent modal.",
+    "Wire up /age-gate/check for the initial age gate.",
+    "Build the iframe age verification modal.",
+    "Show lock labels on our permission-gated UI controls.",
+    "Configure iOS declared age range.",
+    "Handle postMessage events in the verification return page.",
+    "Add jurisdiction detection to our age gate.",
+    "Call /session/upgrade for permission upgrades."
+  ]
+}

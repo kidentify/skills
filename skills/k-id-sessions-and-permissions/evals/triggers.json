@@ -1,0 +1,35 @@
+{
+  "skill_name": "k-id-sessions-and-permissions",
+  "description_version": "1.0.0",
+  "runs_per_query": 3,
+  "threshold": {
+    "positive_trigger_rate": 0.5,
+    "near_miss_trigger_rate_max": 0.2
+  },
+  "should_trigger": [
+    "Build the post–age-gate screen that renders a gated control for every k-ID permission.",
+    "How do I call /session/upgrade correctly?",
+    "Our /session/upgrade returns a response but the UI doesn't update.",
+    "What are the right lock labels for an unverified adult vs minor?",
+    "Run permission discovery for our Compliance Studio product.",
+    "Wire up a top-level session refresh every 30 seconds.",
+    "Enforce k-ID permissions on our server route handlers.",
+    "Every one of our permission-gated controls always shows as locked — help.",
+    "Handle the three outcomes of /session/upgrade (approved, challenged, locked).",
+    "Why does my session-refresh function read stale ageVerificationStatus state?",
+    "A permission in session.permissions has verifiedAgeThreshold: 18. How do I render and unlock it?",
+    "Our Brazil players hit a loot-box permission that requires age 18 assurance — wire the gated feature.",
+    "How do I tell whether a permission needs parental consent vs age assurance?",
+    "/session/upgrade returned CHALLENGE_SESSION_UPGRADE_BY_AGE_ASSURANCE — what should the modal do?"
+  ],
+  "should_not_trigger": [
+    "Build the initial age gate with a null-initial slider.",
+    "Wire up the iframe modal for age verification.",
+    "Poll for parental consent approval.",
+    "Handle /challenge/send-email.",
+    "Verify webhook signatures for verification-result events.",
+    "Detect iOS declared age range.",
+    "Configure /challenge/generate-otp.",
+    "Render the in-app verification prompt for an unverified-adult session."
+  ]
+}

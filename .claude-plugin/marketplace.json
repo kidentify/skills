@@ -1,0 +1,16 @@
+{
+  "name": "kidentify",
+  "owner": {
+    "name": "k-ID",
+    "url": "https://k-id.com"
+  },
+  "description": "Official k-ID Agent Skills marketplace. Skills for integrating age-appropriate compliance into your app, game, or platform across jurisdictions (COPPA, GDPR-Kids, UK AADC / Online Safety Act, Brazil ECA Digital, Australia Online Safety / social media minimum age).",
+  "plugins": [
+    {
+      "name": "k-id-skills",
+      "source": ".",
+      "description": "k-ID integration skills bundle covering both full sessioned integrations (age gate, consent, age verification, sessions, permissions, webhooks) and standalone AgeKit+ age assurance. Supports both CDK approaches — k-ID widgets (age gate, end-to-end, manage permissions, data notices) and fully custom UX workflows — plus server trust-boundary and mobile-native companion skills.",
+      "version": "1.0.0"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+# Eval workspaces (sibling per-skill, iteration-N/ per run) are ephemeral
+*-workspace/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Build artifacts (if any scripts get compiled later)
+dist/
+build/
+node_modules/

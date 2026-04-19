@@ -1,0 +1,45 @@
+{
+  "skill_name": "k-id-age-gate",
+  "description_version": "1.0.0",
+  "runs_per_query": 3,
+  "threshold": {
+    "positive_trigger_rate": 0.5,
+    "near_miss_trigger_rate_max": 0.2
+  },
+  "should_trigger": [
+    "Add a COPPA-compliant age gate to our Next.js app.",
+    "Our age gate is returning a silent 400 when we submit.",
+    "How do I call /age-gate/check from our server?",
+    "Wire up a slider age gate that enforces real interaction before submit.",
+    "We need to resolve iOS declared-age-range before showing the age gate.",
+    "Review our age gate — I'm worried the default of 18 is a compliance problem.",
+    "Build jurisdiction detection for the age gate using IP and timezone fallback.",
+    "We're getting empty sessions back from /age-gate/check. Help.",
+    "Implement the entry flow so minors get a challenge and adults get a session.",
+    "Add a platformSignal to our /age-gate/check body for Android.",
+    "We're launching in the UK and need an age gate that works with the Online Safety Act.",
+    "Brazil ECA Digital age gate — where do we start?",
+    "Our Australian users need an age gate that supports the social media minimum age. Use k-ID.",
+    "Set up the initial claimed-age check for our 18+ site. This is the age gate, not verification.",
+    "Embed the k-ID age gate widget in our web app.",
+    "Generate an age-gate widget URL and listen for the Widget.AgeGate.Result event.",
+    "We want to use the k-ID widget approach for the age gate instead of building our own slider.",
+    "The age-gate widget iframe isn't emitting events — how do we debug it?",
+    "Use the k-ID end-to-end widget to cover age gate and parental consent in one iframe.",
+    "We need a fully custom age-gate UI — we can't use iframes because we're in Unity WebGL.",
+    "Should we use the k-ID age-gate widget or build our own? What are the tradeoffs?"
+  ],
+  "should_not_trigger": [
+    "Build the parental consent screen after our age gate returns a challenge.",
+    "Open the verification iframe for our unverified adult users.",
+    "Wire up the /session/upgrade call for permission requests.",
+    "Handle verification-result webhooks from k-ID.",
+    "Add deep links for the iOS app that returns from Family Connect.",
+    "Show the permissions list after the user has a session.",
+    "Implement the top-level challenge polling loop.",
+    "Build the in-app age-verification prompt and iframe modal.",
+    "Standalone AgeKit+ for an 18+ site — just prove age once, no session.",
+    "Integrate the minimal AgeKit+ flow for a single age-restricted download, no user accounts.",
+    "We have no k-ID session; just need to verify the user is 18+."
+  ]
+}

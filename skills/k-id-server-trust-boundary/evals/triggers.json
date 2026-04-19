@@ -1,0 +1,31 @@
+{
+  "skill_name": "k-id-server-trust-boundary",
+  "description_version": "1.0.0",
+  "runs_per_query": 3,
+  "threshold": {
+    "positive_trigger_rate": 0.5,
+    "near_miss_trigger_rate_max": 0.2
+  },
+  "should_trigger": [
+    "Where do I put the k-ID API key in our Next.js app?",
+    "Set up the server proxy for all k-ID calls.",
+    "Our /age-gate/check returns 401 with an empty body.",
+    "Should the API key be NEXT_PUBLIC_KID_API_KEY?",
+    "Enforce session.permissions on our server route handlers.",
+    "Build the pre-flight checklist for our k-ID integration.",
+    "We swapped environments and everything broke — test vs prod?",
+    "Debug why our webhook secret keeps failing on Test.",
+    "How do we safely cache /session/get results on the server?",
+    "Add rate-limit safe session reads through a proxy."
+  ],
+  "should_not_trigger": [
+    "Build the age gate slider component.",
+    "Wire up the parental consent QR code.",
+    "Implement the iframe age verification modal.",
+    "Render permission-gated UI controls on the post–age-gate screen.",
+    "Handle iOS declared age range.",
+    "Poll for challenge status in the consent modal.",
+    "Make our webhook handler idempotent.",
+    "Map /session/upgrade response permissions to UI state."
+  ]
+}

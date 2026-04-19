@@ -1,0 +1,48 @@
+{
+  "skill_name": "k-id-integration",
+  "description_version": "1.0.0",
+  "runs_per_query": 3,
+  "threshold": {
+    "positive_trigger_rate": 0.5,
+    "near_miss_trigger_rate_max": 0.2
+  },
+  "should_trigger": [
+    "Help me integrate k-ID into our game.",
+    "Add COPPA-compliant age gating and parental consent to our Next.js app.",
+    "We need to start a k-ID integration. What do I do first?",
+    "Can you wire up kidentify on our platform?",
+    "Our site needs age-appropriate access controls for players under 16.",
+    "Walk me through setting up k-ID Compliance Studio with our app.",
+    "How do I call the game-api.test.k-id.com endpoints from our server?",
+    "We have a k-ID API key; where do I start?",
+    "Add parental consent to our flow using asktoplay.com.",
+    "Our team is adding UK Age Appropriate Design Code support. Start with k-ID.",
+    "UK Online Safety Act: add highly effective age assurance to our 18+ site.",
+    "We're launching in Brazil and need to comply with ECA Digital. Use k-ID.",
+    "Australia social media minimum age (16) — wire up k-ID compliance for our app.",
+    "Add age assurance and threshold verification for an 18+ feature using k-ID.",
+    "Our product ships globally and needs to handle COPPA, GDPR-Kids, OSA, and ECA Digital at once.",
+    "We have an 18+ website and only need to prove users are 18+ once. Use AgeKit+.",
+    "Integrate standalone AgeKit+ on our download page — no user accounts, no sessions.",
+    "Our site is 18+ only; we don't need user accounts, just age verification on entry.",
+    "Add a single age-gate check to our Australian social signup before the user can post.",
+    "We only need age verification — no parental consent, no permissions. What's the minimum k-ID integration?",
+    "Should we use the k-ID age-gate widget or build a custom age gate? Help us decide.",
+    "We want to use k-ID widgets for everything — age gate, consent, data notices. Wire them up.",
+    "Use the k-ID end-to-end widget for our full sign-up flow.",
+    "We can't use iframes (Unity WebGL). Build a fully custom k-ID integration calling the APIs directly.",
+    "Integrate k-ID using the CDK widget approach rather than custom UX."
+  ],
+  "should_not_trigger": [
+    "Add an age rating badge to our game on the Play Store.",
+    "Moderate user-generated content in our forum.",
+    "Build a privacy policy page for our website.",
+    "Set up Auth0 for our B2B SaaS.",
+    "How do I add a terms-of-service checkbox?",
+    "I need to configure my permissions catalog in Compliance Studio.",
+    "Build an admin page in the k-ID portal.",
+    "Add SAML SSO for our organization in Compliance Studio.",
+    "Help me theme the Compliance Studio dashboard."
+  ],
+  "notes": "Last two should_not_trigger queries are strictly Compliance Studio UI tasks — this skill correctly declines."
+}

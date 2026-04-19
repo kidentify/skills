@@ -1,0 +1,76 @@
+name: validate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  validate-skills:
+    name: Agent Skills spec validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate SKILL.md files with skills-ref
+        run: |
+          npx --yes @agentskills/skills-ref validate skills/
+
+  validate-plugin-manifest:
+    name: Claude Code plugin manifest schema
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check plugin.json and marketplace.json are valid JSON
+        run: |
+          python3 -c "import json; json.load(open('.claude-plugin/plugin.json'))"
+          python3 -c "import json; json.load(open('.claude-plugin/marketplace.json'))"
+
+      - name: Verify required plugin.json fields
+        run: |
+          python3 - <<'PY'
+          import json, sys
+          m = json.load(open('.claude-plugin/plugin.json'))
+          required = ['name', 'description', 'version', 'author', 'repository']
+          missing = [k for k in required if k not in m]
+          if missing:
+              print(f'Missing required fields in plugin.json: {missing}')
+              sys.exit(1)
+          print('plugin.json has all required fields')
+          PY
+
+  link-check:
+    name: Verify docs.k-id.com links referenced in SKILL.md files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Extract and check docs.k-id.com links
+        run: |
+          set -euo pipefail
+          urls=$(grep -rhoE 'https://docs\.k-id\.com/[A-Za-z0-9_\-/#.]+' skills/ | sort -u)
+          echo "Checking $(echo "$urls" | wc -l) unique docs.k-id.com URLs"
+          failed=0
+          while IFS= read -r url; do
+            [ -z "$url" ] && continue
+            status=$(curl -o /dev/null -s -w "%{http_code}" --max-time 10 -L "$url" || echo "000")
+            if [ "$status" != "200" ]; then
+              echo "FAIL ($status): $url"
+              failed=$((failed + 1))
+            fi
+          done <<< "$urls"
+          if [ "$failed" -gt 0 ]; then
+            echo "$failed broken link(s) found"
+            exit 1
+          fi
+          echo "All docs.k-id.com links OK"

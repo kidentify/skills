@@ -1,0 +1,37 @@
+{
+  "name": "k-id-skills",
+  "description": "k-ID integration skills for age-appropriate compliance across jurisdictions. Covers both full sessioned integrations (age gate + sessions + permissions + parental consent + age verification) and standalone AgeKit+ age assurance (single age-proof decision, no session). Supports both CDK integration approaches — pre-built k-ID widgets (age gate, end-to-end, manage permissions, data notices) and fully custom UX workflows calling /age-gate/check and /challenge/* directly. Use when integrating k-ID or adding COPPA, GDPR-Kids, UK AADC, UK Online Safety Act, Brazil ECA Digital, or Australia Online Safety / social media minimum age compliance to a web app, game, site, or platform.",
+  "version": "1.0.0",
+  "author": {
+    "name": "k-ID",
+    "url": "https://docs.k-id.com"
+  },
+  "homepage": "https://docs.k-id.com/get-started/agent-skills",
+  "repository": "https://github.com/kidentify/skills",
+  "license": "SEE-LICENSE-FILE",
+  "keywords": [
+    "k-id",
+    "kid",
+    "age-gate",
+    "age-verification",
+    "age-assurance",
+    "agekit",
+    "agekit-plus",
+    "threshold-verification",
+    "parental-consent",
+    "widget",
+    "cdk",
+    "custom-age-gate",
+    "coppa",
+    "gdpr-kids",
+    "aadc",
+    "online-safety-act",
+    "osa",
+    "eca-digital",
+    "brazil-eca",
+    "australia-online-safety",
+    "social-media-minimum-age",
+    "compliance",
+    "child-safety"
+  ]
+}

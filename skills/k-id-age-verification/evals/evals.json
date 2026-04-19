@@ -1,0 +1,88 @@
+{
+  "skill_name": "k-id-age-verification",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Our adult users come back from /age-gate/check as 'unverified'. Build an in-app verification prompt and iframe modal to let them verify.",
+      "expected_output": "A verification prompt that opens an iframe modal (not a new tab) containing the verification URL; URL fetched on demand; polling plus wake triggers; idempotent success handler.",
+      "assertions": [
+        "The verification URL is fetched on-demand when the modal opens, not prefetched at parent mount",
+        "The verification URL is rendered in an iframe inside a modal, not via window.open or target=_blank",
+        "verifyId is stored with useState (or equivalent reactive state), not useRef",
+        "Polling runs while the modal is open and wakes on visibilitychange and focus",
+        "Success handler is idempotent (guarded by a resolvedRef or equivalent)",
+        "Modal is closed BEFORE the session is refreshed",
+        "Session update is a single call path (not a local state clear followed by a refreshSession)"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Calling /age-verification/perform-access-age-verification keeps returning 400. Why?",
+      "expected_output": "Body likely has top-level age or ageCategory; should be nested under criteria: { ageCategory: 'ADULT' }.",
+      "assertions": [
+        "Response identifies the nested criteria.ageCategory body shape as the fix",
+        "Response notes top-level age fields are rejected with 400 in every pattern",
+        "Response links or references the endpoint's docs.k-id.com page"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Our user verified age in a new tab but our app never unlocked.",
+      "expected_output": "Diagnosis prescribes the three-strategy return-path detection: server poll + BroadcastChannel + visibility wake, run in parallel.",
+      "assertions": [
+        "Response proposes at least server polling AND visibility-wake",
+        "Response mentions BroadcastChannel or a cross-tab detection mechanism",
+        "Response notes postMessage is a hint, not authoritative",
+        "Response explains why window.open is fragile on iOS Safari"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "We're launching in Brazil. The ECA Digital rules require age 18 for loot-boxes. A permission in session.permissions has verifiedAgeThreshold: 18 and enabled: false. How do I gate the UI and unlock it?",
+      "expected_output": "Render the loot-box feature with a 'Verify your age' lock; on tap call /session/upgrade for that permission; handle CHALLENGE_SESSION_UPGRADE_BY_AGE_ASSURANCE by opening the iframe verification modal; on success, refresh the session and unlock.",
+      "assertions": [
+        "Response distinguishes verifiedAgeThreshold from GUARDIAN-managed permissions",
+        "Response handles CHALLENGE_SESSION_UPGRADE_BY_AGE_ASSURANCE specifically (not the generic consent widget)",
+        "Response routes to the age-verification iframe modal, not the parental-consent modal",
+        "Response refreshes the session after successful verification",
+        "Response notes the permission can never be unlocked through parental consent"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "UK Online Safety Act requires 'highly effective age assurance' for our 18+ site. We have user accounts and permissions per feature (restricted messaging, restricted social feed, etc). Integrate k-ID.",
+      "expected_output": "Full sessioned integration: age gate first, then either the unverified-adult verification path (if the adult site requires proving adult status before any feature) or the per-permission threshold path (if individual adult features have their own thresholds). Method selection happens server-side based on Compliance Studio jurisdiction settings; no client-side filtering of verification methods.",
+      "assertions": [
+        "Response starts with the age gate (not age verification)",
+        "Response uses Pattern 2 (unverified adult) OR Pattern 3 (threshold), not standalone AgeKit+, because the product has sessioned features",
+        "Response does NOT hardcode a specific verification method (facial age estimation, ID doc, etc.)",
+        "Response notes that 'highly effective age assurance' is a Compliance Studio server-side setting, not a client flag",
+        "Response references docs.k-id.com for endpoint shapes rather than inventing them"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "We have a simple 18+ site, no accounts, no persistent user state — just need to prove the user is 18+ once on entry. Integrate k-ID with the minimum code.",
+      "expected_output": "Standalone AgeKit+ (Pattern 1). Server-to-server call to /age-verification/perform-access-age-verification with { jurisdiction, criteria: { ageCategory: 'ADULT' } } and NO sessionId. Render url in an iframe. Act on PASS/FAIL via webhook or /age-verification/get-status?id=<id>. No age gate, no session, no permissions.",
+      "assertions": [
+        "Response identifies this as Pattern 1 / standalone AgeKit+",
+        "Response does NOT include a sessionId in the request body",
+        "Response does NOT stand up an age gate, a session, or a permission-management UI",
+        "Response keeps the create-verification call server-side (api key protected)",
+        "Response shows reading the result via webhook OR /age-verification/get-status (not just postMessage)",
+        "Response does not invent a new endpoint; uses /age-verification/perform-access-age-verification"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "A user abandoned our AgeKit+ verification flow yesterday and is back now trying again. What should our code do?",
+      "expected_output": "Check /age-verification/get-status?id=<id> first. If the previous verification is still valid (not expired — URLs are valid for 2 weeks), reuse it. If get-status returns 400 with INVALID_INPUT the verification is expired — create a new one by calling /age-verification/perform-access-age-verification again.",
+      "assertions": [
+        "Response checks status of the prior verification before creating a new one",
+        "Response mentions the 2-week URL validity window",
+        "Response handles INVALID_INPUT by creating a fresh verification, not by retrying the old URL",
+        "Response does not suggest client-side rebuilding of the verification URL"
+      ]
+    }
+  ]
+}

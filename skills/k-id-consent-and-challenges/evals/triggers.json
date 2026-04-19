@@ -1,0 +1,35 @@
+{
+  "skill_name": "k-id-consent-and-challenges",
+  "description_version": "1.0.0",
+  "runs_per_query": 3,
+  "threshold": {
+    "positive_trigger_rate": 0.5,
+    "near_miss_trigger_rate_max": 0.2
+  },
+  "should_trigger": [
+    "Build a parental consent screen for k-ID with QR, OTP, and email.",
+    "Our parent approved consent but the child's app never unlocks. Help debug.",
+    "Wire up /challenge/send-email for our consent flow.",
+    "How do I poll for challenge approval without breaking when the modal closes?",
+    "We got a challengeId back from the age gate — what do I do with it?",
+    "Implement post-consent session materialization when PASS has no sessionId.",
+    "The OTP says enter at family.k-id.com but that doesn't match docs — which is right?",
+    "Our challenge response has childLiteAccessEnabled: true — should we let the minor continue with limited features before the parent approves?",
+    "Our consent screen only has email; should we add QR?",
+    "Build challenge polling at the top level of the app that survives visibilitychange.",
+    "Use the k-ID end-to-end widget so parental consent happens inside an iframe.",
+    "Generate a manage-permissions widget URL to prompt a parent to approve a specific permission.",
+    "Should our minor-consent flow use the k-ID widget or a custom QR+OTP screen?",
+    "The end-to-end widget fired Widget.ExitReview but our session permissions are empty — what next?"
+  ],
+  "should_not_trigger": [
+    "Wire up /age-gate/check for the initial age gate.",
+    "Build the iframe verification modal for unverified adults.",
+    "Handle verification-result webhooks from k-ID.",
+    "Render the list of permission-gated controls after the user has a session.",
+    "Add iOS platform age signals before the age gate.",
+    "Configure test vs prod API keys in our env files.",
+    "Implement /session/upgrade for permission requests.",
+    "Debug why the age gate slider defaults to 18."
+  ]
+}

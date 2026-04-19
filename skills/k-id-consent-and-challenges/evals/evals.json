@@ -1,0 +1,51 @@
+{
+  "skill_name": "k-id-consent-and-challenges",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Build a parental consent screen for our k-ID flow. We already have the challenge from the age gate.",
+      "expected_output": "A consent screen with QR, OTP, email input, and direct link all visible in parallel; correct endpoint wiring; polling mounted at the top level of the app that survives modal close.",
+      "assertions": [
+        "Consent screen presents QR, OTP, email, and direct-link lanes in parallel (not sequentially)",
+        "Email endpoint used is /challenge/send-email (not /challenge/send-consent-email)",
+        "OTP instructions reference asktoplay.com",
+        "Polling is mounted at the top level of the signed-in app, not inside the consent modal",
+        "Polling wakes on visibilitychange and focus events",
+        "PASS handling branches on sessionId present vs absent",
+        "When sessionId is absent, response re-calls /age-gate/check with the stored enteredAge"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Parent approved consent but the child's app didn't unlock. What's wrong?",
+      "expected_output": "Diagnosis suggests the polling was inside the modal, OR the PASS without sessionId path wasn't handled, OR /session/get returned a transient 404 and was treated as terminal.",
+      "assertions": [
+        "Response mentions top-level polling (outside the modal) surviving modal close as a likely cause",
+        "Response mentions handling PASS when sessionId is missing",
+        "Response mentions retrying /session/get with a short delay after swapping in the real sessionId from /challenge/get-status"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Our OTP copy says 'Enter at family.k-id.com'. Is that right?",
+      "expected_output": "No — use asktoplay.com. It's the memorable redirect domain intended for OTP use.",
+      "assertions": [
+        "Response says to use asktoplay.com",
+        "Response explains asktoplay.com is easier to read/share than family.k-id.com"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Use the k-ID end-to-end widget so the entire age gate + parental consent flow happens inside one iframe.",
+      "expected_output": "Server route calls POST /widget/generate-e2e-url with jurisdiction and optional kuid / options. Client embeds the URL in an iframe and listens for Widget.AgeGate.Result, Widget.DataNotices.ConsentApproved, and Widget.ExitReview events. The widget itself initiates parental consent when the submitted age triggers it. No /challenge/send-email, no custom polling loop.",
+      "assertions": [
+        "Response calls /widget/generate-e2e-url from the server",
+        "Response does NOT build a custom QR/OTP/email consent screen",
+        "Response does NOT set up a custom challenge-polling loop",
+        "Response listens for Widget.AgeGate.Result and handles sessionId",
+        "Response calls /session/get after the widget completes to materialize the session",
+        "The API key is read from a server-only environment variable"
+      ]
+    }
+  ]
+}

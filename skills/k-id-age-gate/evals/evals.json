@@ -1,0 +1,65 @@
+{
+  "skill_name": "k-id-age-gate",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Add a COPPA-compliant age gate to our Next.js App Router app. Call /age-gate/check from a server route.",
+      "expected_output": "An age gate React component with null-initial age state, slider interaction, disabled submit until interaction, server route handler that calls /age-gate/check with exactly one age identifier, and response branching for session / challenge / unverified-adult session.",
+      "assertions": [
+        "Age state is initialized to null (not 0, not 18, not any number)",
+        "Submit button is disabled until age is set AND the user has interacted with the slider",
+        "The /age-gate/check request body contains exactly one of dateOfBirth OR age (not both)",
+        "The API call is made from a server route, not from the browser",
+        "The API key is read from a server-only environment variable",
+        "Response handling branches on session, challenge, and unverified-adult session cases",
+        "No synthetic 'local-${Date.now()}' sessionId is fabricated when the response lacks a session"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Our /age-gate/check is returning 400 with an empty body and we can't figure out why.",
+      "expected_output": "Diagnosis that the body likely contains BOTH dateOfBirth and age, OR that test vs prod key/URL are mismatched, plus instructions to verify one identifier at a time.",
+      "assertions": [
+        "Response suggests checking that the body contains only one age identifier",
+        "Response mentions the test vs prod URL/key mismatch as a common cause",
+        "Response recommends a direct curl smoke-test against the base URL"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We're on iOS and the OS gives us a declared-age-range. Should we still show our slider age gate?",
+      "expected_output": "Call /age-gate/get-platform-age-range first; if the signal is HIGH trust and returns a minor, the session is minted from the signal and the slider is skipped; if LOW trust or no signal, show the slider and pass platformSignal on /age-gate/check.",
+      "assertions": [
+        "Response mentions /age-gate/get-platform-age-range",
+        "Response distinguishes HIGH-trust from LOW-trust signals",
+        "Response says to skip the slider when the signal is HIGH trust for a minor",
+        "Response says to pass the signal as platformSignal on /age-gate/check when the signal is LOW trust or absent"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Embed the k-ID age-gate widget in our Next.js app and handle the result.",
+      "expected_output": "Server route calls POST /widget/generate-age-gate-url with a jurisdiction (and optional kuid/redirectUrl). Client embeds the returned URL in an iframe and listens for Widget.AgeGate.Result and Widget.AgeGate.Challenge DOM events. After the result, client calls GET /session/get with the returned sessionId to materialize the session. No direct /age-gate/check call is required.",
+      "assertions": [
+        "Response calls /widget/generate-age-gate-url from a server route (not the browser)",
+        "Response does NOT also call /age-gate/check in the widget flow",
+        "Response embeds the returned URL in an iframe",
+        "Response listens for Widget.AgeGate.Result with sessionId and optional challengeId",
+        "Response mentions Widget.AgeGate.Challenge as a possible interim event",
+        "Response acts on the sessionId by calling GET /session/get (or equivalent) after the widget completes",
+        "The API key is read from a server-only environment variable"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Should we use the k-ID age-gate widget or build our own custom slider? We're on Next.js with a standard web UI.",
+      "expected_output": "Default to a custom slider (Pattern A) calling /age-gate/check. Custom produces the best-looking, most brand-integrated age gate, renders inline (no iframe), and stays visually consistent with the rest of the product. Drop to the widget (Pattern B) only if the integration must be small, simple, and fast to ship — proofs of concept, internal tools, early-stage games.",
+      "assertions": [
+        "Response recommends a custom slider (Pattern A) as the default",
+        "Response justifies the recommendation with brand fit, inline (no iframe) rendering, and visual consistency",
+        "Response positions the widget (Pattern B) as a fast-path fallback for small / simple / fast-to-ship integrations, not the default",
+        "Response does not present both options as equally good"
+      ]
+    }
+  ]
+}

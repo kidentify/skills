@@ -1,0 +1,84 @@
+{
+  "skill_name": "k-id-integration",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm starting a new k-ID integration in a Next.js app. What do I tackle first?",
+      "expected_output": "A plan that loads k-id-server-trust-boundary first (API key + proxy + test vs prod URL), then k-id-age-gate, then the relevant feature skill based on the user's next step.",
+      "assertions": [
+        "Response names k-id-server-trust-boundary as the first skill to load or the first area to get right",
+        "Response names k-id-age-gate as second",
+        "Response does not recommend calling a k-ID endpoint directly from the browser",
+        "Response mentions running discovery before hardcoding permission slugs"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We need webhook handling and parental consent. Which skills do I need loaded?",
+      "expected_output": "A list that includes k-id-webhooks and k-id-consent-and-challenges, plus k-id-server-trust-boundary as prerequisite.",
+      "assertions": [
+        "Response mentions k-id-webhooks",
+        "Response mentions k-id-consent-and-challenges",
+        "Response mentions k-id-server-trust-boundary as prerequisite",
+        "Response does not confuse parental consent (challenges) with adult age verification"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "A user says they want to 'configure permissions in Compliance Studio' — do I need a k-ID integration skill for that?",
+      "expected_output": "No. Compliance Studio configuration is a UI task in portal.k-id.com and is out of scope for this skill bundle.",
+      "assertions": [
+        "Response declines to load an integration skill for this request",
+        "Response points the user to Compliance Studio portal.k-id.com",
+        "Response is concise and does not fabricate a Compliance Studio API"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "We're adding UK Online Safety Act compliance to our 18+ site. Route me to the right skill(s).",
+      "expected_output": "Route to k-id-age-gate first (it produces the claimed-age + jurisdiction context), then k-id-age-verification for the unverified-adult path or verifiedAgeThreshold flow; k-id-server-trust-boundary as prerequisite.",
+      "assertions": [
+        "Response does NOT skip the age gate on the grounds that the site is 18+ only",
+        "Response names k-id-age-gate as the first feature skill",
+        "Response names k-id-age-verification for the age-assurance step",
+        "Response treats 'highly effective age assurance' as a Compliance Studio server-side configuration, not a client decision"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Our game is shipping in Brazil. ECA Digital requires age 18 for loot-boxes and targeted ads. How do the skills handle this differently from COPPA?",
+      "expected_output": "Same k-id-age-gate + session flow; threshold enforcement lives on individual permissions via verifiedAgeThreshold; those permissions are unlocked via k-id-age-verification (age assurance), never via k-id-consent-and-challenges (parental consent). Jurisdictional behaviour is configured in Compliance Studio.",
+      "assertions": [
+        "Response explains that verifiedAgeThreshold permissions unlock via age assurance, not parental consent",
+        "Response explains that the same skills cover both COPPA and ECA Digital — no branching in client code",
+        "Response references Compliance Studio as the place where jurisdictional rules are configured",
+        "Response does not invent a Brazil-specific endpoint"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Should we use the k-ID age-gate widget, the end-to-end widget, or build our own age gate and consent screen?",
+      "expected_output": "Default to custom UX workflows for Shape A integrations — custom UIs produce the best-looking, most brand-integrated experience, render inline (no iframe), and work on every platform k-ID supports (web, Unity WebGL, consoles, native desktop). Drop to the widget (age-gate or end-to-end) when the integration must be small, simple, and as fast as possible to ship — proofs of concept, internal tools, early-stage games, or when minimum code / minimum compliance surface area matters more than brand fit.",
+      "assertions": [
+        "Response recommends custom UX as the default for production integrations",
+        "Response recommends widgets only when the integration must be small, simple, and fast to ship",
+        "Response mentions that custom produces the best-looking and most brand-integrated experience",
+        "Response notes that custom works on platforms where iframes aren't practical (Unity WebGL, consoles, native desktop)",
+        "Response references /age-gate/check and /challenge/send-email for the custom path, and /widget/generate-e2e-url or /widget/generate-age-gate-url for the widget fallback"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "We run an 18+ site. UK Online Safety Act requires age verification. We have no user accounts and don't want sessions — just prove the user is 18+ on entry and let them through. What's the minimal k-ID integration?",
+      "expected_output": "This is Shape B — standalone AgeKit+. Load k-id-server-trust-boundary and k-id-age-verification only. Skip the age gate, sessions, permissions, and consent skills. The integration is: server-to-server POST to /age-verification/perform-access-age-verification (no sessionId) with jurisdiction: 'GB' and criteria: { ageCategory: 'ADULT' }, render the returned URL in an iframe, act on the PASS/FAIL result via webhook or /age-verification/get-status.",
+      "assertions": [
+        "Response identifies this as standalone AgeKit+ / Shape B, not the full sessioned integration",
+        "Response does NOT recommend loading k-id-age-gate or k-id-sessions-and-permissions",
+        "Response loads k-id-age-verification as the primary skill",
+        "Response notes that the /age-verification request omits sessionId (no session exists)",
+        "Response keeps the API call server-to-server (api key stays on the server)",
+        "Response does not invent a new endpoint for standalone verification"
+      ]
+    }
+  ]
+}

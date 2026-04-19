@@ -1,0 +1,38 @@
+{
+  "skill_name": "k-id-server-trust-boundary",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Where do I put the k-ID API key, and how do I call k-ID from our Next.js app?",
+      "expected_output": "Server-only env var (no NEXT_PUBLIC_ prefix), a single proxy route that forwards allowlisted paths to k-ID with the bearer auth header; clients never call game-api.k-id.com directly.",
+      "assertions": [
+        "API key is placed in a server-only env var (e.g. KID_API_KEY) with no client-exposed prefix like NEXT_PUBLIC_",
+        "Response describes a server proxy route (or API route) that forwards requests to k-ID",
+        "Bearer auth header is set server-side",
+        "Response recommends an allowlist of proxied paths for production",
+        "Response notes clients never call game-api.k-id.com directly"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Every request to /age-gate/check returns 401 with no body. We've quadruple-checked the key. What else?",
+      "expected_output": "Almost certainly a test-vs-prod key/URL mismatch; run the curl smoke test directly against KID_API_BASE_URL to confirm.",
+      "assertions": [
+        "Response says to suspect test-vs-prod key/URL mismatch first",
+        "Response provides a curl command against KID_API_BASE_URL to isolate the issue",
+        "Response advises against retrying on 401 because it's usually config"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "How do I enforce k-ID permissions on a privileged API route?",
+      "expected_output": "Fetch the session via the proxy, check session.permissions.find(p => p.name === required)?.enabled === true, return 403 on missing.",
+      "assertions": [
+        "Response explicitly checks enabled === true (not truthy or just presence)",
+        "Response treats missing permission as false (not true)",
+        "Response returns 403 for unauthorized, 401 only for unauthenticated",
+        "Response does NOT suggest client-side-only enforcement as sufficient"
+      ]
+    }
+  ]
+}

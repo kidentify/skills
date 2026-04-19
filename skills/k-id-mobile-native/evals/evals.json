@@ -1,0 +1,76 @@
+{
+  "skill_name": "k-id-mobile-native",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Integrate k-ID into our iOS SwiftUI app. Read the platform age signal and open age verification in-app.",
+      "expected_output": "Read iOS Declared Age Range first, classify trust level, pass the signal to /age-gate/check via the server proxy; present the verification widget in ASWebAuthenticationSession (SFSafariViewController is also acceptable) with a redirectUrl deep link for result delivery — do NOT use WKWebView (no WebAuthn → no AgeKeys) and do NOT open Safari via UIApplication.open (external browser loses context). Hold a strong reference to the ASWebAuthenticationSession. Refresh the session on applicationDidBecomeActive.",
+      "assertions": [
+        "iOS Declared Age Range is read before the age gate UI is shown",
+        "Trust level classification is preserved (LOW is not upgraded to HIGH)",
+        "/age-gate/check is called via a server proxy, not directly from the binary",
+        "Response recommends ASWebAuthenticationSession (or SFSafariViewController) for the widget",
+        "Response explicitly advises against WKWebView and explains the AgeKeys / WebAuthn reason",
+        "Response advises against UIApplication.open to external Safari",
+        "Response includes a redirectUrl deep link for result delivery",
+        "Session is refreshed on applicationDidBecomeActive (or equivalent foreground event)"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Our iOS users tap 'Verify', Safari opens, they finish, but the app never shows them as verified.",
+      "expected_output": "Switch from external Safari (UIApplication.open) to ASWebAuthenticationSession or SFSafariViewController with a redirectUrl deep link, and hold a strong reference to the session. External Safari loses context and doesn't reliably return. Also refresh session state from the server on return and rely on the webhook as the authoritative signal.",
+      "assertions": [
+        "Response identifies that external Safari loses context and the completion callback",
+        "Response recommends ASWebAuthenticationSession (or SFSafariViewController) as the replacement",
+        "Response mentions configuring a redirectUrl deep link so the flow returns to the app",
+        "Response mentions refreshing session on return or relying on webhook-driven state as the authoritative signal"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We're serving users in Utah. Do we have to collect the iOS declared age range, or is it optional?",
+      "expected_output": "Required. US App Store Accountability Acts make platform signals non-optional where available.",
+      "assertions": [
+        "Response says platform signals are required (not optional) in Accountability Act jurisdictions",
+        "Response mentions Utah specifically or the US App Store Accountability Act category",
+        "Response does not recommend upgrading LOW to HIGH on the client"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Should we use Android WebView or Chrome Custom Tabs to display the k-ID end-to-end widget in our Kotlin app?",
+      "expected_output": "Use Chrome Custom Tabs (CustomTabsIntent) — not WebView. Android WebView doesn't support WebAuthn, so users can't create or use AgeKeys (FIDO-based reusable age-proof credentials), which is both a UX downgrade and a compliance limitation. Custom Tabs support WebAuthn, share cookies with Chrome, and return results reliably via a redirectUrl deep link. Trusted Web Activity isn't usable either (requires digital asset links on k-ID's domain) and falls back to Custom Tabs anyway.",
+      "assertions": [
+        "Response recommends Custom Tabs as the default",
+        "Response explicitly advises against Android WebView",
+        "Response explains that WebView doesn't support WebAuthn and therefore blocks AgeKeys",
+        "Response mentions redirectUrl for result delivery",
+        "Response does not recommend Trusted Web Activity"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Our iOS testers say the AgeKey option never appears in the k-ID verification widget. We're embedding it in WKWebView.",
+      "expected_output": "That's the cause. WKWebView doesn't support WebAuthn, and AgeKeys are WebAuthn/FIDO-based credentials, so the widget hides the AgeKey option when rendered in WKWebView. Switch the rendering surface to ASWebAuthenticationSession (preferred) or SFSafariViewController — both expose WebAuthn. Deliver results via an options.redirectUrl deep link configured on the widget-URL generation call.",
+      "assertions": [
+        "Response identifies WKWebView as the cause (no WebAuthn support)",
+        "Response explains that AgeKeys are WebAuthn/FIDO-based and therefore hidden in non-WebAuthn surfaces",
+        "Response recommends switching to ASWebAuthenticationSession (or SFSafariViewController)",
+        "Response mentions redirectUrl as the result-delivery mechanism for these surfaces"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "How do we get the verification result back to our Android app after the Custom Tab closes?",
+      "expected_output": "Use the redirectUrl deep link. On the server, generate the widget URL (for example /widget/generate-e2e-url or /age-verification/perform-access-age-verification) with options.redirectUrl set to a deep link the app owns (myapp://verification-complete). Register a matching intent filter in AndroidManifest.xml. When the widget completes, the Custom Tab redirects to the deep link with verificationId/sessionId and result as query parameters. Verify server-side via /age-verification/get-status (AgeKit+) or /session/get (CDK) — don't trust the query params alone. DOM postMessage only works in WebView, not Custom Tabs.",
+      "assertions": [
+        "Response recommends options.redirectUrl as the mechanism",
+        "Response mentions generating the widget URL server-side with redirectUrl set",
+        "Response mentions registering an intent filter / deep link handler in the Android app",
+        "Response mentions verifying the result server-side via /session/get or /age-verification/get-status",
+        "Response notes that DOM postMessage does not work with Custom Tabs"
+      ]
+    }
+  ]
+}

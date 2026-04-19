@@ -1,0 +1,40 @@
+{
+  "skill_name": "k-id-webhooks",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Build a Next.js App Router webhook endpoint for k-ID. Verify signatures and handle the main event types.",
+      "expected_output": "Route handler that reads the raw body, computes HMAC-SHA256 over timestamp + rawBody with the webhook secret, compares with timingSafeEqual, rejects stale timestamps, handles Test/Challenge/Verification/ParentalConsent/Session events, is idempotent on event ID, and returns 200 fast.",
+      "assertions": [
+        "Signature is computed over the raw request body, not parsed-and-re-stringified JSON",
+        "HMAC input is timestamp + rawBody using crypto.createHmac with the webhook secret",
+        "Signature comparison uses crypto.timingSafeEqual (or equivalent constant-time compare)",
+        "Timestamp freshness check rejects requests older than ~5 minutes",
+        "Invalid signature returns 401",
+        "Handler is idempotent, keyed by event ID (or equivalent) with a TTL",
+        "Handler returns 200 quickly; heavy work is deferred or async",
+        "Handler branches on event type and maps each to the correct store update"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Our Test event webhook keeps returning 401. We're sure we copied the secret. What's wrong?",
+      "expected_output": "Most likely the body is being parsed before verification (so the HMAC input is different from what k-ID signed), or the hex case is mismatched, or the HMAC input is bodyOnly instead of timestamp+body.",
+      "assertions": [
+        "Response mentions computing HMAC over the raw body (not parsed JSON) as a likely cause",
+        "Response mentions that HMAC input includes the timestamp concatenated with the raw body",
+        "Response mentions hex case / constant-time comparison as additional potential causes"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "How do I make sure k-ID's retries don't cause duplicate state changes?",
+      "expected_output": "Idempotency keyed by event ID with a ~24h cache (Redis recommended in serverless), returning 200 on duplicates without re-processing.",
+      "assertions": [
+        "Response recommends an idempotency cache keyed by event ID",
+        "Response recommends persistent storage (Redis or equivalent) for serverless environments",
+        "Response says to return 200 on duplicate events"
+      ]
+    }
+  ]
+}

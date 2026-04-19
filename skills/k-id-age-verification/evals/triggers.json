@@ -1,0 +1,43 @@
+{
+  "skill_name": "k-id-age-verification",
+  "description_version": "1.0.0",
+  "runs_per_query": 3,
+  "threshold": {
+    "positive_trigger_rate": 0.5,
+    "near_miss_trigger_rate_max": 0.2
+  },
+  "should_trigger": [
+    "Build the unverified-adult verification prompt and iframe modal for k-ID.",
+    "How do I call /age-verification/perform-access-age-verification correctly?",
+    "Our adult session comes back unverified — what should we show the user?",
+    "User verified their age but the feature never unlocked. Help debug.",
+    "Implement new-tab verification detection for k-ID.",
+    "The /age-verification/get-status call is returning 400. What's the query param?",
+    "Wire up an age-verification prompt that fetches the iframe URL on demand.",
+    "Add BroadcastChannel post-verify detection from the return page.",
+    "Our iOS Safari users can't complete age verification in a new window.",
+    "Fix the race where local unverified-state cleanup and refreshSession both fire.",
+    "Our permission has a verifiedAgeThreshold of 18 — how do we unlock it?",
+    "UK Online Safety Act: we need highly effective age assurance for 18+ features. Wire this up with k-ID.",
+    "Brazil ECA Digital: block loot-boxes until the user proves they're 18 using k-ID.",
+    "Australia social media minimum age of 16 — how do we verify with k-ID?",
+    "/session/upgrade returned CHALLENGE_SESSION_UPGRADE_BY_AGE_ASSURANCE. What do we do?",
+    "Add threshold verification for our direct-marketing permission (Brazil 12+).",
+    "Standalone AgeKit+ integration for our 18+ site. No sessions, no permissions.",
+    "We don't have a k-ID session — can we still call /age-verification/perform-access-age-verification?",
+    "Single age-proof decision for a download. What's the request body if we don't have a sessionId?",
+    "Gate our Australian social signup on an age check, then forget about it. No user state.",
+    "18+ only website: need to verify users are 18+ once and let them through. Minimum k-ID integration.",
+    "AgeKit+ waterfall flow — how do we receive the PASS/FAIL result?"
+  ],
+  "should_not_trigger": [
+    "Build the parental consent screen for minors.",
+    "Wire up /age-gate/check for the initial age gate.",
+    "Poll for challenge status in the consent modal.",
+    "Add an age slider for the initial gate.",
+    "Handle /challenge/send-email.",
+    "Configure the test vs prod API key env variables.",
+    "Render the permission list after a successful session.",
+    "Wire up parentalconsent-granted webhooks."
+  ]
+}

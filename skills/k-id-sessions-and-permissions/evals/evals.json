@@ -1,0 +1,50 @@
+{
+  "skill_name": "k-id-sessions-and-permissions",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Build the post–age-gate screen. Render a gated control for each permission in the session and wire up /session/upgrade.",
+      "expected_output": "The screen iterates session.permissions; each gated control picks labels by status + manager + session kind; /session/upgrade uses requestedPermissions: [{ name }] and reads data.session.permissions; the app runs a top-level 30s session refresh with visibility/focus wakes.",
+      "assertions": [
+        "The screen iterates session.permissions and renders one gated control per slug (not a hardcoded subset)",
+        "/session/upgrade request body uses requestedPermissions (not permissions) with items of shape { name }",
+        "/session/upgrade response is read from data.session.permissions (not data.permissions)",
+        "Lock labels are branched by status and manager correctly (PROHIBITED, GUARDIAN, PLAYER, unverified-adult, pendingChallenge)",
+        "A 30-second session refresh loop is mounted at the top level of the signed-in app and wakes on visibilitychange and focus",
+        "Response does not add an extra ageVerificationStatus guard to the enabled branch of the gated control",
+        "Empty session.permissions is treated as a structural error, not an empty state"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Our upgrade flow: we call /session/upgrade and the backend returns 200, but the UI never reflects the new permission. What's wrong?",
+      "expected_output": "The response is being read from data.permissions; it should be data.session.permissions.",
+      "assertions": [
+        "Response diagnoses the wrong response path as the likely cause",
+        "Response shows the correct path data.session.permissions",
+        "Response links or references the upgrade-session docs.k-id.com page"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We hardcoded the permission slugs from the quickstart docs and every permission-gated control always shows locked.",
+      "expected_output": "Run discovery against a real session for the product's jurisdiction; starter-pack and copy-pasted slugs rarely match a product's Compliance Studio configuration.",
+      "assertions": [
+        "Response tells the user to run discovery against a real session",
+        "Response explains that a slug not present in session.permissions is not configured for the product and cannot enable",
+        "Response describes iterating session.permissions rather than hardcoding"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "A permission in session.permissions has verifiedAgeThreshold: 18, managedBy: PLAYER, enabled: false. The user is verified adult in the session. When they tap the feature, what should happen?",
+      "expected_output": "Call /session/upgrade with that permission; if response returns CHALLENGE_SESSION_UPGRADE_BY_AGE_ASSURANCE open the age-assurance iframe modal (k-id-age-verification); on success refresh session. Do NOT route to the parental-consent UI.",
+      "assertions": [
+        "Response does NOT open the parental-consent UI",
+        "Response routes to the age-verification / age-assurance iframe modal",
+        "Response handles CHALLENGE_SESSION_UPGRADE_BY_AGE_ASSURANCE explicitly",
+        "Response explains that verifiedAgeThreshold permissions are never GUARDIAN-managed"
+      ]
+    }
+  ]
+}
