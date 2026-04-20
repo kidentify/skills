@@ -1,7 +1,6 @@
 ---
 name: k-id-integration
-description: >
-  Router for k-ID integration work. Activates whenever the user is building, planning, or debugging a k-ID integration, or is adding age-appropriate compliance in any jurisdiction — COPPA (US), GDPR-Kids (EU), UK AADC, UK Online Safety Act (OSA), Brazil ECA Digital, Australia Online Safety / social media minimum age, or similar regimes — to an app, game, site, or platform. Also activates on "age assurance", "age verification", "AgeKit+", "parental consent", "age gate", "widget", "custom age gate", and "threshold verification". Handles both full sessioned integrations (CDK — age gate + sessions + permissions + consent + verification) and standalone AgeKit+ age-assurance (a single age-proof decision with no persistent session). Within CDK, handles both integration approaches — fully custom UX workflows (call /age-gate/check and /challenge/* directly and render your own UI — the default, for the best-looking and most brand-integrated experience) and pre-built k-ID widgets (age-gate, end-to-end, manage-permissions, data-notices widgets that embed as iframes and carry built-in compliance logic — a fast-path fallback when the integration must be small, simple, and fast to ship). Reads the user's request, picks the right specialized sibling skill(s), and hands off. Not for generic age-rating or content-moderation work unrelated to k-ID, and not for k-ID Compliance Studio configuration (which is UI-driven).
+description: "Router for k-ID integration work. Activates when the user is building, planning, or debugging a k-ID integration, or adding age-appropriate compliance — COPPA (US), GDPR-Kids (EU), UK AADC, UK OSA, Brazil ECA Digital, Australia Online Safety / social-media minimum age, or similar — in an app, game, site, or platform. Also activates on \"age assurance\", \"age verification\", \"AgeKit+\", \"parental consent\", \"age gate\", \"widget\", \"custom age gate\", and \"threshold verification\". Handles both full sessioned integrations (CDK — age gate + sessions + permissions + consent + verification) and standalone AgeKit+ (single age-proof, no persistent session). Within CDK, supports both approaches: fully custom UX (call /age-gate/check and /challenge/* directly, render your own UI — default, most brand-integrated) and pre-built k-ID widgets (age-gate, end-to-end, manage-permissions, data-notices iframes — fast-path fallback). Picks the right sibling skill(s). Not for generic age-rating or Compliance Studio configuration."
 license: SEE-LICENSE-FILE
 metadata:
   version: "1.0.0"
@@ -235,7 +234,7 @@ Load skills in this order based on the integration shape.
   Age verification / age assurance is a separate, heavier flow invoked
   after the age gate. The age gate comes first and always.
 - **Do not invent API endpoint shapes.** All request and response
-  bodies come from [`docs.k-id.com/api`](https://docs.k-id.com/api).
+  bodies come from [`docs.k-id.com/api`](https://docs.k-id.com/api/overview).
   When in doubt, the feature skills link to the exact endpoint page.
 - **Pick the right integration shape first.** Standing up a full
   sessioned integration for a product that only needs a single age

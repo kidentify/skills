@@ -1,7 +1,6 @@
 ---
 name: k-id-age-gate
-description: >
-  Implements a k-ID age gate — the entry point for any full sessioned k-ID integration (Shape A in the router), covering every jurisdictional regime k-ID supports (COPPA, GDPR-Kids, UK AADC, UK Online Safety Act, Brazil ECA Digital, Australia Online Safety / social media minimum age, and more). Supports both integration approaches — Pattern A (the default) builds a fully custom age-gate UI and calls /age-gate/check directly, producing the best-looking and most brand-integrated entry screen and working on every platform (web, Unity WebGL, consoles, native), and Pattern B is a fast-path fallback that uses the k-ID age-gate widget (/widget/generate-age-gate-url or /widget/generate-e2e-url — an iframe that handles jurisdiction-appropriate age collection and automatically initiates the parental-consent challenge) when the integration must be small, simple, and fast to ship. Covers null-initial age state, platform age signals resolved first, IP-based jurisdiction detection with timezone fallback, and the /age-gate/check response shapes (session, challenge, unverified-adult). Use when adding, debugging, or reviewing the age gate in a web app, game, or platform that uses sessions and permissions. Use this EVEN IF the user mentions "COPPA", "OSA", "ECA", or "age verification" but means the initial claimed-age check. Not for standalone AgeKit+ integrations where only a single age-proof decision is needed (see k-id-age-verification Pattern 1), not for post-gate age verification or per-permission threshold verification (see k-id-age-verification Patterns 2 and 3), and not for parental consent after the gate (see k-id-consent-and-challenges).
+description: "Implements the k-ID age gate — entry point for any full sessioned k-ID integration (Shape A), covering every regime (COPPA, GDPR-Kids, UK AADC, UK OSA, Brazil ECA Digital, Australia Online Safety). Two approaches: Pattern A (default) builds a fully custom UI and calls /age-gate/check directly — best-looking, most brand-integrated, works on every platform (web, Unity WebGL, consoles, native); Pattern B is a fast-path fallback using the k-ID widget (/widget/generate-age-gate-url or /widget/generate-e2e-url — iframe handles age collection and auto-initiates consent). Covers null-initial age state, platform signals first, IP-based jurisdiction with timezone fallback, and /age-gate/check response shapes (session, challenge, unverified-adult). Use when adding or debugging the gate. Use EVEN IF the user says COPPA, OSA, ECA, or \"age verification\" but means the initial claimed-age check. Not for AgeKit+ (k-id-age-verification P1), post-gate / threshold verification (P2–3), or consent (k-id-consent-and-challenges)."
 license: SEE-LICENSE-FILE
 metadata:
   version: "1.0.0"
@@ -266,7 +265,7 @@ Listen for DOM events emitted by the widget:
 - `Widget.ExitReview` when the user clicks "Done".
 
 For the full event shapes, see
-[`docs.k-id.com/events/dom-events`](https://docs.k-id.com/events/dom-events).
+[`docs.k-id.com/events/dom-events`](https://docs.k-id.com/events/dom-events/overview).
 
 ### 4. Act on the result
 

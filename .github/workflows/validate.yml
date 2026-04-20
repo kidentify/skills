@@ -14,14 +14,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
-          node-version: '20'
+          python-version: '3.12'
 
       - name: Validate SKILL.md files with skills-ref
         run: |
-          npx --yes @agentskills/skills-ref validate skills/
+          set -euo pipefail
+          python3 -m pip install 'skills-ref>=0.1.1'
+          failed=0
+          for d in skills/*/; do
+            echo "Validating ${d}..."
+            agentskills validate "${d}" || failed=1
+          done
+          exit "${failed}"
 
   validate-plugin-manifest:
     name: Claude Code plugin manifest schema
@@ -58,7 +65,7 @@ jobs:
       - name: Extract and check docs.k-id.com links
         run: |
           set -euo pipefail
-          urls=$(grep -rhoE 'https://docs\.k-id\.com/[A-Za-z0-9_\-/#.]+' skills/ | sort -u)
+          urls=$(grep -rhoE 'https://docs\.k-id\.com/[A-Za-z0-9_./#-]+' skills/ | sort -u)
           echo "Checking $(echo "$urls" | wc -l) unique docs.k-id.com URLs"
           failed=0
           while IFS= read -r url; do

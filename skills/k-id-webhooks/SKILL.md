@@ -196,7 +196,7 @@ Canonical references:
 - [Webhooks overview](https://docs.k-id.com/events/webhooks/overview)
 - [`Challenge.StateChange`](https://docs.k-id.com/events/webhooks/event-types/challenge-statechange)
 - [`Verification.Result`](https://docs.k-id.com/events/webhooks/event-types/verification-result)
-- [`Verification.Revoke`](https://docs.k-id.com/events/webhooks/event-types/verification-revoke)
+- [`Verification.Revoke`](https://docs.k-id.com/events/webhooks/overview)
 - [`ParentalConsent.Granted`](https://docs.k-id.com/events/webhooks/event-types/parentalconsent-granted)
 - [`Session.ChangePermissions`](https://docs.k-id.com/events/webhooks/event-types/session-changepermissions)
 - [`Session.Delete`](https://docs.k-id.com/events/webhooks/event-types/session-delete)
