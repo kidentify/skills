@@ -79,6 +79,16 @@ Eight skills, designed to work together:
 | `k-id-server-trust-boundary` | Companion skill: API key placement, server proxy, pre-flight checks. Required for both shapes. |
 | `k-id-mobile-native` | Companion skill: iOS/Android/Unity platform age signals and deep links. |
 
+### Neimo MCP skills (prefix `neimo-`)
+
+A separate family of skills that **orchestrate the [Neimo MCP](https://neimo.k-id.com)** rather than the k-ID API. Use these when the agent needs to research children's-digital-safety regulation across multiple markets (COPPA, GDPR Art. 8, UK OSA, Brazil ECA Digital, AU social-media min-age, etc.) before or after touching k-ID itself.
+
+| Skill | Purpose |
+|---|---|
+| `neimo-compliance-audit` | Multi-market compliance audit. Orchestrates Neimo's `lookup_regulation`, `compare_regulations`, `lookup_state_laws`, `search_kb_semantic`, `search_primary_sources`, `lookup_market_insights` to produce a structured findings document with citations and a tiered must / should / consider obligations table. |
+
+**Prerequisite:** a Neimo MCP connection. Get a free 30-day trial key at [neimo.k-id.com/connect](https://neimo.k-id.com/connect). Without it the agent will report `"Neimo MCP not configured"` and stop.
+
 ## Install
 
 ### Claude Code (plugin marketplace — fastest)
