@@ -1,0 +1,24 @@
+{
+  "name": "neimo-skills",
+  "description": "neimo. MCP orchestration and visual design skills. Includes neimo-compliance-audit for multi-market regulatory research (COPPA, GDPR-Kids, UK OSA, Brazil ECA Digital, Australia social-media minimum age, and 200+ jurisdictions in the neimo. knowledge base) and neimo-design-system for producing neimo.-styled HTML deliverables (client blueprints, data stories, presentation decks, blog diagrams, marketing mocks). Use when the agent needs to research children's-digital-safety regulation or build a visual asset in the neimo. look. Requires a free neimo. MCP key from neimo.k-id.com/connect.",
+  "version": "1.0.0",
+  "author": {
+    "name": "k-ID",
+    "url": "https://docs.k-id.com"
+  },
+  "homepage": "https://neimo.k-id.com",
+  "repository": "https://github.com/kidentify/skills",
+  "license": "SEE-LICENSE-FILE",
+  "keywords": [
+    "neimo",
+    "compliance-audit",
+    "regulatory-research",
+    "children-digital-safety",
+    "coppa",
+    "gdpr-kids",
+    "online-safety-act",
+    "eca-digital",
+    "mcp",
+    "design-system"
+  ]
+}

@@ -87,7 +87,7 @@ A separate family of skills that **orchestrate the [Neimo MCP](https://neimo.k-i
 |---|---|
 | `neimo-compliance-audit` | Multi-market compliance audit. Orchestrates Neimo's `lookup_regulation`, `compare_regulations`, `lookup_state_laws`, `search_kb_semantic`, `search_primary_sources`, `lookup_market_insights` to produce a structured findings document with citations and a tiered must / should / consider obligations table. |
 
-**Prerequisite:** a Neimo MCP connection. Get a free 30-day trial key at [neimo.k-id.com/connect](https://neimo.k-id.com/connect). Without it the agent will report `"Neimo MCP not configured"` and stop.
+**Prerequisite:** a Neimo MCP connection. Get a free trial key at [neimo.k-id.com/connect](https://neimo.k-id.com/connect). Without it the agent will report `"Neimo MCP not configured"` and stop.
 
 ### Neimo design skills
 
@@ -104,6 +104,12 @@ A separate family of skills that **produce Neimo-styled HTML deliverables** rath
 ```bash
 /plugin marketplace add github.com/kidentify/skills
 /plugin install k-id-skills@kidentify
+```
+
+For just the neimo. MCP and design skills (skip the k-ID integration bundle), swap the install line for:
+
+```bash
+/plugin install neimo-skills@kidentify
 ```
 
 ### Cursor, Codex, Copilot, Gemini CLI, and most other agents
