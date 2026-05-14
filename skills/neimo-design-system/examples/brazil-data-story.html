@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brazil Loot-Box Rules — What Studios Are Actually Doing</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600;1,8..60,700&display=swap');
+
+:root {
+  --void: #0C0714;
+  --deep: #1A1229;
+  --panel: rgba(255, 255, 255, 0.04);
+  --panel-raised: rgba(255, 255, 255, 0.06);
+  --rule: rgba(165, 123, 245, 0.14);
+  --white: #F5F2FF;
+  --text: rgba(255, 255, 255, 0.72);
+  --muted: rgba(255, 255, 255, 0.48);
+  --dim: rgba(255, 255, 255, 0.32);
+  --purple: #A57BF5;       --purple-glow: rgba(165, 123, 245, 0.10);
+  --indigo: #8EA4FF;       --indigo-glow: rgba(142, 164, 255, 0.10);
+  --cyan: #6CE2FF;         --cyan-glow: rgba(108, 226, 255, 0.10);
+  --violet: #AF7EFF;       --violet-glow: rgba(175, 126, 255, 0.10);
+  --green: #4ADE80;        --green-glow: rgba(74, 222, 128, 0.10);
+  --red: #FF6F71;          --red-glow: rgba(255, 111, 113, 0.10);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Sora', sans-serif;
+  background: var(--void);
+  color: var(--text);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.016;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+}
+
+.material-symbols-rounded {
+  font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+}
+
+.constrain {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding-left: 64px;
+  padding-right: 64px;
+}
+
+section { position: relative; width: 100%; }
+
+/* ---------- HERO ---------- */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 64px;
+  background:
+    radial-gradient(ellipse 55% 50% at 18% 18%, rgba(165, 123, 245, 0.10), transparent),
+    radial-gradient(ellipse 50% 45% at 82% 80%, rgba(108, 226, 255, 0.06), transparent),
+    var(--void);
+}
+
+.hero-inner { max-width: 1080px; margin: 0 auto; width: 100%; }
+
+.hero-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--purple);
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 28px; height: 1px;
+  background: var(--purple);
+}
+
+.hero-title {
+  font-size: clamp(2.6rem, 5.5vw, 4rem);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 28px;
+  max-width: 920px;
+}
+.hero-title em {
+  font-family: 'Source Serif 4', serif;
+  font-style: italic;
+  font-weight: 700;
+  color: var(--purple);
+}
+
+.hero-deck {
+  font-size: 1.15rem;
+  color: var(--text);
+  max-width: 680px;
+  line-height: 1.55;
+  margin-bottom: 56px;
+}
+
+.hero-meta {
+  display: flex;
+  gap: 48px;
+  flex-wrap: wrap;
+  padding-top: 28px;
+  border-top: 1px solid var(--rule);
+}
+.hero-meta-item .label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.55rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.hero-meta-item .value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--white);
+}
+
+/* ---------- SECTION CHROME ---------- */
+.section { padding: 100px 0; position: relative; }
+.section--alt { background: linear-gradient(180deg, var(--void), var(--deep), var(--void)); }
+
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--purple);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-label::before {
+  content: '';
+  width: 24px; height: 1px;
+  background: var(--purple);
+}
+
+.section-heading {
+  font-size: clamp(1.8rem, 3.8vw, 2.6rem);
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  margin-bottom: 20px;
+  max-width: 820px;
+}
+.section-heading em {
+  font-family: 'Source Serif 4', serif;
+  font-style: italic;
+  font-weight: 700;
+  color: var(--purple);
+}
+
+.section-deck {
+  font-size: 1.05rem;
+  color: var(--text);
+  max-width: 720px;
+  margin-bottom: 56px;
+  line-height: 1.6;
+}
+
+/* ---------- THE RULE: TIER CARDS ---------- */
+.tier-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.tier {
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 32px 28px;
+  position: relative;
+  overflow: hidden;
+}
+.tier::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.tier--exempt::before { background: var(--green); }
+.tier--restricted::before { background: var(--purple); }
+.tier--banned::before { background: var(--red); }
+
+.tier-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.55rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: inline-block;
+  margin-bottom: 14px;
+}
+.tier--exempt .tier-tag { color: var(--green); background: var(--green-glow); }
+.tier--restricted .tier-tag { color: var(--purple); background: var(--purple-glow); }
+.tier--banned .tier-tag { color: var(--red); background: var(--red-glow); }
+
+.tier-name {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+  margin-bottom: 8px;
+}
+.tier-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+.tier-desc {
+  font-size: 0.88rem;
+  color: var(--text);
+  line-height: 1.55;
+}
+
+/* ---------- CALLOUT ---------- */
+.callout {
+  padding: 32px 36px;
+  background: var(--purple-glow);
+  border-left: 3px solid var(--purple);
+  margin: 56px 0 0;
+  border-radius: 0 4px 4px 0;
+}
+.callout p {
+  font-family: 'Source Serif 4', serif;
+  font-size: 1.1rem;
+  color: var(--white);
+  line-height: 1.55;
+  font-style: italic;
+}
+.callout strong {
+  color: var(--purple);
+  font-weight: 700;
+  font-style: normal;
+  font-family: 'Sora', sans-serif;
+}
+
+/* ---------- BAR CHART ---------- */
+.chart-frame {
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 40px 36px;
+  position: relative;
+  overflow: hidden;
+}
+.chart-frame::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--purple), var(--cyan));
+}
+
+.chart-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+.chart-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+
+.bar-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 16px;
+}
+.bar-row:last-child { margin-bottom: 0; }
+
+.bar-label {
+  width: 240px;
+  flex-shrink: 0;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text);
+}
+.bar-label .ll {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.55rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.bar-track {
+  flex: 1;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+.bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  width: 0;
+  transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+  position: relative;
+}
+.bar-fill .bar-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--void);
+}
+.bar-fill--red    { background: linear-gradient(90deg, #FF6F71, #FFB1B2); }
+.bar-fill--purple { background: linear-gradient(90deg, #A57BF5, #C8A8FF); }
+.bar-fill--cyan   { background: linear-gradient(90deg, #4264D1, #6CE2FF); }
+.bar-fill--dim    { background: linear-gradient(90deg, rgba(255,255,255,0.18), rgba(255,255,255,0.32)); }
+.bar-fill--dim .bar-value { color: var(--white); }
+
+.bar-meta {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* ---------- STRATEGY CARDS ---------- */
+.strategies {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.strat {
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 36px 32px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.strat::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.strat--exit::before { background: var(--red); }
+.strat--stall::before { background: var(--violet); }
+.strat--verify::before { background: var(--green); }
+
+.strat-icon {
+  width: 40px; height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.strat--exit .strat-icon { background: var(--red-glow); color: var(--red); border: 1px solid rgba(255, 111, 113, 0.18); }
+.strat--stall .strat-icon { background: var(--violet-glow); color: var(--violet); border: 1px solid rgba(175, 126, 255, 0.18); }
+.strat--verify .strat-icon { background: var(--green-glow); color: var(--green); border: 1px solid rgba(74, 222, 128, 0.18); }
+
+.strat-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.strat--exit .strat-label { color: var(--red); }
+.strat--stall .strat-label { color: var(--violet); }
+.strat--verify .strat-label { color: var(--green); }
+
+.strat-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 14px;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+.strat-body {
+  font-size: 0.92rem;
+  color: var(--text);
+  line-height: 1.6;
+  margin-bottom: 24px;
+  flex: 1;
+}
+.strat-foot {
+  padding-top: 18px;
+  border-top: 1px solid var(--rule);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.strat-foot strong { color: var(--white); font-weight: 700; }
+
+/* ---------- ANPD PREFERENCE LIST ---------- */
+.pref-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--panel);
+}
+.pref-col {
+  padding: 36px 32px;
+}
+.pref-col + .pref-col { border-left: 1px solid var(--rule); }
+
+.pref-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--rule);
+}
+.pref-head .material-symbols-rounded { font-size: 22px; }
+.pref-col--yes .pref-head .material-symbols-rounded { color: var(--green); }
+.pref-col--no .pref-head .material-symbols-rounded { color: var(--red); }
+
+.pref-head-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.pref-col--yes .pref-head-label { color: var(--green); }
+.pref-col--no .pref-head-label { color: var(--red); }
+
+.pref-item {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+  font-size: 0.9rem;
+  color: var(--text);
+  line-height: 1.55;
+  align-items: flex-start;
+}
+.pref-item:last-child { margin-bottom: 0; }
+.pref-item .material-symbols-rounded {
+  font-size: 16px;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+.pref-col--yes .pref-item .material-symbols-rounded { color: var(--green); }
+.pref-col--no .pref-item .material-symbols-rounded { color: var(--red); }
+.pref-item strong { color: var(--white); font-weight: 600; }
+
+/* ---------- TIMELINE ---------- */
+.timeline {
+  position: relative;
+  padding-left: 32px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  bottom: 12px;
+  left: 7px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--purple), var(--cyan));
+}
+
+.tl-item {
+  position: relative;
+  padding-bottom: 36px;
+}
+.tl-item:last-child { padding-bottom: 0; }
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: -32px;
+  top: 8px;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: var(--void);
+  border: 2px solid var(--purple);
+}
+.tl-item--active::before {
+  background: var(--purple);
+  box-shadow: 0 0 0 4px rgba(165, 123, 245, 0.20);
+}
+.tl-item--future::before {
+  border-color: var(--cyan);
+}
+
+.tl-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--purple);
+  margin-bottom: 6px;
+}
+.tl-item--future .tl-date { color: var(--cyan); }
+.tl-item--active .tl-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.tl-item--active .tl-date::after {
+  content: 'NOW';
+  font-size: 0.5rem;
+  padding: 2px 7px;
+  border-radius: 100px;
+  background: var(--purple);
+  color: var(--void);
+  letter-spacing: 0.15em;
+}
+
+.tl-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+.tl-body {
+  font-size: 0.88rem;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* ---------- BOTTOM-LINE ---------- */
+.bottom-line {
+  text-align: center;
+  padding: 100px 64px;
+  background:
+    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(165, 123, 245, 0.08), transparent),
+    var(--void);
+}
+.bottom-line-inner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+.bottom-line h2 {
+  font-size: clamp(1.8rem, 3.8vw, 2.6rem);
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  margin-bottom: 22px;
+}
+.bottom-line h2 em {
+  font-family: 'Source Serif 4', serif;
+  font-style: italic;
+  color: var(--purple);
+}
+.bottom-line p {
+  font-size: 1.05rem;
+  color: var(--text);
+  line-height: 1.65;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.footer {
+  padding: 36px 64px 48px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--dim);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  flex-wrap: wrap;
+  gap: 12px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+/* ---------- NEIMO WORDMARK + POWERED-BY ---------- */
+.neimo-wordmark {
+  display: inline-block;
+  color: var(--purple);
+  vertical-align: middle;
+}
+.neimo-wordmark--small  { height: 11px; }
+.neimo-wordmark--inline { height: 18px; }
+.neimo-wordmark--large  { height: 28px; }
+
+/* k-ID parent-product mark, recolored via mask-image */
+.kid-logo {
+  display: inline-block;
+  background-color: currentColor;
+  -webkit-mask: url('data:image/png;base64,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') center / contain no-repeat;
+          mask: url('data:image/png;base64,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') center / contain no-repeat;
+  color: var(--muted);
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+.kid-logo--small  { width: 16px; height: 16px; }
+.kid-logo--inline { width: 20px; height: 20px; }
+
+.powered-by {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+}
+.powered-by-label { color: var(--dim); }
+
+/* ---------- NEIMO HEADER — QUIET SIGNATURE ---------- */
+.neimo-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 22px 64px 0;
+  max-width: 1080px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+.neimo-header-mark {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+.neimo-header-mark:hover { color: var(--purple); }
+@media (max-width: 700px) {
+  .neimo-header { padding: 18px 24px 0; }
+}
+
+/* ---------- ANIMATIONS ---------- */
+.anim {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.anim.visible { opacity: 1; transform: none; }
+.anim.d1 { transition-delay: 0.05s; }
+.anim.d2 { transition-delay: 0.1s; }
+.anim.d3 { transition-delay: 0.15s; }
+.anim.d4 { transition-delay: 0.2s; }
+.anim.d5 { transition-delay: 0.25s; }
+.anim.d6 { transition-delay: 0.3s; }
+
+@media (max-width: 800px) {
+  .constrain, .hero, .bottom-line { padding-left: 24px; padding-right: 24px; }
+  .footer { padding-left: 24px; padding-right: 24px; }
+  .tier-grid, .strategies, .pref-grid { grid-template-columns: 1fr; }
+  .pref-col + .pref-col { border-left: none; border-top: 1px solid var(--rule); }
+  .bar-label { width: 140px; }
+  .hero-meta { gap: 24px; }
+}
+
+@media print {
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  body { overflow: visible !important; }
+  body::after { display: none !important; }
+  .anim { opacity: 1 !important; transform: none !important; }
+  .bar-fill { width: var(--w) !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- NEIMO HEADER — quiet signature, just the wordmark -->
+<header class="neimo-header anim">
+  <a class="neimo-header-mark" href="https://neimo.ai" target="_blank" rel="noopener" aria-label="Neimo">
+    <svg class="neimo-wordmark neimo-wordmark--inline" viewBox="0 0 66 17" xmlns="http://www.w3.org/2000/svg" fill="none">
+      <path fill="currentColor" d="M1.39258 16.8345C0.572754 16.8345 0 16.3066 0 15.3633V5.88477C0 5.02002 0.505371 4.46973 1.33643 4.46973C2.15625 4.46973 2.71777 5.02002 2.71777 5.88477V6.71582H2.77393C3.41406 5.30078 4.64941 4.48096 6.47998 4.48096C9.10791 4.48096 10.6016 6.16553 10.6016 8.91699V15.3633C10.6016 16.3066 10.0288 16.8345 9.20898 16.8345C8.38916 16.8345 7.80518 16.3066 7.80518 15.3633V9.47852C7.80518 7.79395 7.01904 6.85059 5.42432 6.85059C3.81836 6.85059 2.79639 8.00732 2.79639 9.71436V15.3633C2.79639 16.3066 2.2124 16.8345 1.39258 16.8345ZM18.1372 16.8457C14.4985 16.8457 12.3535 14.5659 12.3535 10.7026C12.3535 6.90674 14.5435 4.4585 17.98 4.4585C21.2368 4.4585 23.4604 6.77197 23.4604 10.0063C23.4604 10.8374 22.9888 11.3315 22.1577 11.3315H15.1387V11.4214C15.1387 13.4092 16.2954 14.6895 18.1147 14.6895C19.3726 14.6895 20.1924 14.2515 21.0908 13.106C21.3828 12.7803 21.6411 12.6567 22.0342 12.6567C22.6631 12.6567 23.1572 13.061 23.1572 13.7349C23.1572 13.9482 23.0898 14.1953 22.9663 14.4424C22.1802 15.9585 20.4058 16.8457 18.1372 16.8457ZM15.1611 9.48975H20.7202C20.6641 7.76025 19.5635 6.62598 17.9912 6.62598C16.4189 6.62598 15.2734 7.78271 15.1611 9.48975ZM26.7285 3.03223C25.8638 3.03223 25.1787 2.3584 25.1787 1.51611C25.1787 0.662598 25.8638 0 26.7285 0C27.6045 0 28.2896 0.662598 28.2896 1.51611C28.2896 2.3584 27.6045 3.03223 26.7285 3.03223ZM26.7285 16.8345C25.875 16.8345 25.3359 16.2729 25.3359 15.3633V5.94092C25.3359 5.04248 25.875 4.46973 26.7285 4.46973C27.582 4.46973 28.1323 5.04248 28.1323 5.95215V15.3633C28.1323 16.2729 27.582 16.8345 26.7285 16.8345ZM31.8721 16.8345C31.0298 16.8345 30.4795 16.2954 30.4795 15.3633V5.896C30.4795 4.98633 31.0298 4.46973 31.8159 4.46973C32.6021 4.46973 33.1636 4.98633 33.1636 5.896V6.77197H33.2197C33.7363 5.39062 34.9941 4.48096 36.6113 4.48096C38.2959 4.48096 39.4976 5.3457 39.9355 6.87305H40.0029C40.5757 5.40186 41.9907 4.48096 43.709 4.48096C46.0562 4.48096 47.5947 6.06445 47.5947 8.44531V15.3633C47.5947 16.2954 47.0332 16.8345 46.2021 16.8345C45.3599 16.8345 44.7983 16.2954 44.7983 15.3633V9.13037C44.7983 7.67041 44.0347 6.83936 42.6646 6.83936C41.3169 6.83936 40.396 7.82764 40.396 9.25391V15.3633C40.396 16.2954 39.8682 16.8345 39.0371 16.8345C38.1948 16.8345 37.6782 16.2954 37.6782 15.3633V8.98438C37.6782 7.65918 36.8696 6.83936 35.5669 6.83936C34.2192 6.83936 33.2759 7.88379 33.2759 9.32129V15.3633C33.2759 16.2954 32.7031 16.8345 31.8721 16.8345ZM55.1079 16.8457C51.6152 16.8457 49.3467 14.521 49.3467 10.6577C49.3467 6.81689 51.6377 4.4585 55.1079 4.4585C58.5781 4.4585 60.8691 6.80566 60.8691 10.6577C60.8691 14.521 58.6006 16.8457 55.1079 16.8457ZM55.1079 14.6333C56.8823 14.6333 58.0278 13.1958 58.0278 10.6577C58.0278 8.13086 56.8823 6.68213 55.1079 6.68213C53.3447 6.68213 52.188 8.13086 52.188 10.6577C52.188 13.1958 53.3335 14.6333 55.1079 14.6333ZM64.1709 16.7334C63.2612 16.7334 62.5537 16.0259 62.5537 15.1162C62.5537 14.2178 63.2612 13.499 64.1709 13.499C65.0693 13.499 65.7769 14.2178 65.7769 15.1162C65.7769 16.0259 65.0693 16.7334 64.1709 16.7334Z"/>
+    </svg>
+  </a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow anim">Brazil · ECA Digital · Article 20 · Loot Boxes</div>
+    <h1 class="hero-title anim d1">
+      Studios are splitting three ways on Brazil's loot-box rules: <em>pull out, stall, or verify</em>.
+    </h1>
+    <p class="hero-deck anim d2">
+      ECA Digital is in force as of <strong style="color:var(--white)">March 17, 2026</strong>. Games with paid loot boxes must
+      verify age or block the feature by default. The Q1 2026 testing data shows
+      almost no one is there yet — and ANPD has already started sending letters.
+    </p>
+    <div class="hero-meta anim d3">
+      <div class="hero-meta-item">
+        <div class="label">Law in Force</div>
+        <div class="value">Mar 17, 2026</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="label">Max Penalty</div>
+        <div class="value">R$50M / 10% turnover</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="label">Tested Games w/ Loot Boxes</div>
+        <div class="value">69% (Q1 2026)</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="label">With Real Age Verification</div>
+        <div class="value" style="color: var(--red)">30%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT THE LAW REQUIRES -->
+<section class="section">
+  <div class="constrain">
+    <div class="section-label anim">The rule</div>
+    <h2 class="section-heading anim d1">
+      Loot boxes are now a <em>prohibited content</em> category for minors.
+    </h2>
+    <p class="section-deck anim d2">
+      Under Article 20, games with paid loot boxes must verify a user's age — or
+      restrict the feature by default until verification happens. Article 2
+      defines a loot box narrowly: a paid, randomized purchase whose contents
+      aren't known in advance. That definition splits the market into tiers.
+    </p>
+
+    <div class="tier-grid">
+      <div class="tier tier--exempt anim d3">
+        <span class="tier-tag">Exempt</span>
+        <div class="tier-name">Tier 0 + Tier 1</div>
+        <div class="tier-title">Free randomized rewards</div>
+        <p class="tier-desc">
+          Daily login crates, gacha pulls earned in-game, randomized quest
+          drops. No payment, no obligation. Odds disclosure still applies.
+        </p>
+      </div>
+      <div class="tier tier--restricted anim d4">
+        <span class="tier-tag">Verify or Block</span>
+        <div class="tier-name">Tier 2</div>
+        <div class="tier-title">Paid, closed-loop, cosmetic only</div>
+        <p class="tier-desc">
+          Skins-only crates, cosmetic gacha. Bought with real money but no
+          gameplay advantage. Age verification required to engage.
+        </p>
+      </div>
+      <div class="tier tier--banned anim d5">
+        <span class="tier-tag">Highest Risk</span>
+        <div class="tier-name">Tier 3</div>
+        <div class="tier-title">Paid + gameplay impact</div>
+        <p class="tier-desc">
+          Paid randomized power, pay-to-win. Age verification required.
+          ANPD has flagged paid loot boxes as a top-priority enforcement
+          target.
+        </p>
+      </div>
+    </div>
+
+    <div class="callout anim d6">
+      <p>
+        <strong>For all tiers:</strong> odds and item descriptions must be made
+        clear and accessible — independent of whether age verification applies.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- THE GAP -->
+<section class="section section--alt">
+  <div class="constrain">
+    <div class="section-label anim">The compliance gap</div>
+    <h2 class="section-heading anim d1">
+      What games actually do today — versus what Article 20 requires.
+    </h2>
+    <p class="section-deck anim d2">
+      Pre-computed metrics from real-world testing of games available in
+      Brazil, Q1 2026. Boolean metrics are the share of tested games where
+      the feature is present.
+    </p>
+
+    <div class="chart-frame anim d3">
+      <div class="chart-title">Loot boxes vs. the safeguards that should sit in front of them</div>
+      <div class="chart-sub">Brazil · Games · Q1 2026 · n ≈ 30 titles tested</div>
+
+      <div class="bar-row">
+        <div class="bar-label">
+          Loot Boxes available to minors
+          <span class="ll">w/o parental consent</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill bar-fill--red" style="--w: 69%"><span class="bar-value">69%</span></div></div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">
+          In-App Purchases
+          <span class="ll">any monetization</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill bar-fill--red" style="--w: 100%"><span class="bar-value">100%</span></div></div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">
+          Age Gate present
+          <span class="ll">any prompt at all</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill bar-fill--purple" style="--w: 53%"><span class="bar-value">53%</span></div></div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">
+          Real Age Verification
+          <span class="ll">beyond self-declaration</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill bar-fill--purple" style="--w: 30%"><span class="bar-value">30%</span></div></div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">
+          Prompts Parental Consent
+          <span class="ll">halts minor onboarding</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill bar-fill--cyan" style="--w: 16%"><span class="bar-value">16%</span></div></div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">
+          Spending Limits
+          <span class="ll">parental control</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill bar-fill--cyan" style="--w: 3%"><span class="bar-value">3%</span></div></div>
+      </div>
+
+      <div class="bar-row">
+        <div class="bar-label">
+          Loot Box Controls
+          <span class="ll">parent toggle for the feature</span>
+        </div>
+        <div class="bar-track"><div class="bar-fill bar-fill--dim" style="--w: 2%"><span class="bar-value">0%</span></div></div>
+      </div>
+
+      <div class="bar-meta">
+        <span>Source · Neimo Market Insights 2026-Q1</span>
+        <span>App type · Game</span>
+        <span>Jurisdiction · BR</span>
+      </div>
+    </div>
+
+    <div class="callout anim d4" style="margin-top: 40px;">
+      <p>
+        69% of tested games expose loot boxes to minors without consent.
+        Only 30% have age verification. <strong>Zero offer a parent toggle for
+        the loot-box feature itself.</strong> That is the gap Article 20 just made
+        actionable.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- THREE STRATEGIES -->
+<section class="section">
+  <div class="constrain">
+    <div class="section-label anim">What studios are doing</div>
+    <h2 class="section-heading anim d1">
+      Three distinct strategies have emerged — and ANPD has signalled where it will push.
+    </h2>
+    <p class="section-deck anim d2">
+      Drawn from Neimo's Legal Horizons February + March 2026 briefings on ANPD
+      engagement. The market is bifurcating the way Belgium did with loot
+      boxes a few years ago — except Brazil is a top-5 gaming market, so
+      "just leave" carries a different cost.
+    </p>
+
+    <div class="strategies">
+      <div class="strat strat--exit anim d3">
+        <div class="strat-icon">
+          <span class="material-symbols-rounded">logout</span>
+        </div>
+        <div class="strat-label">Strategy 01</div>
+        <h3 class="strat-title">Pull the feature, or pull the title</h3>
+        <p class="strat-body">
+          A meaningful cohort of studios with loot-box-driven monetization are
+          either disabling loot boxes for Brazilian users or pulling the title
+          from the market entirely. Same playbook as the post-2018 Belgium
+          exit. Simple, low-engineering, blunt.
+        </p>
+        <div class="strat-foot">
+          Cost · <strong>Lose the LATAM #1 market</strong><br>
+          Used by · Loot-box-heavy mobile + mid-tier titles
+        </div>
+      </div>
+
+      <div class="strat strat--stall anim d4">
+        <div class="strat-icon">
+          <span class="material-symbols-rounded">hourglass_empty</span>
+        </div>
+        <div class="strat-label">Strategy 02</div>
+        <h3 class="strat-title">Self-declare and wait</h3>
+        <p class="strat-body">
+          The default for most studios today. Keep the existing "I confirm I am
+          over 18" checkbox. ANPD has explicitly flagged this as the cohort it
+          will target first. Fines aren't immediate, but compliance letters are
+          flying now and private class actions are already a live risk.
+        </p>
+        <div class="strat-foot">
+          Risk · <strong>Initial enforcement target</strong><br>
+          Used by · The silent majority, ~70%
+        </div>
+      </div>
+
+      <div class="strat strat--verify anim d5">
+        <div class="strat-icon">
+          <span class="material-symbols-rounded">verified_user</span>
+        </div>
+        <div class="strat-label">Strategy 03</div>
+        <h3 class="strat-title">Install real age assurance</h3>
+        <p class="strat-body">
+          Gate the loot-box feature specifically behind age verification — not
+          the whole game. ANPD endorses on-device processing, verifiable
+          credentials, and zero-knowledge proofs. Studios going this route keep
+          the market and convert the regulation into a parental-trust signal.
+        </p>
+        <div class="strat-foot">
+          Upside · <strong>Keep the market, keep monetization</strong><br>
+          Used by · Larger studios + platforms
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT ANPD WANTS -->
+<section class="section section--alt">
+  <div class="constrain">
+    <div class="section-label anim">What ANPD wants — and doesn't</div>
+    <h2 class="section-heading anim d1">
+      The regulator has been unusually specific about <em>how</em> to verify.
+    </h2>
+    <p class="section-deck anim d2">
+      ANPD's preliminary guidance and the March 2026 Presidential Decree
+      together draw a sharp line: privacy-preserving age assurance is
+      welcomed; heavy-handed biometric collection and ID-doc dumps are not.
+    </p>
+
+    <div class="pref-grid anim d3">
+      <div class="pref-col pref-col--yes">
+        <div class="pref-head">
+          <span class="material-symbols-rounded">check_circle</span>
+          <span class="pref-head-label">Endorsed</span>
+        </div>
+        <div class="pref-item">
+          <span class="material-symbols-rounded">check</span>
+          <div><strong>On-device processing.</strong> Verify locally, send only a signal, not the data.</div>
+        </div>
+        <div class="pref-item">
+          <span class="material-symbols-rounded">check</span>
+          <div><strong>Verifiable credentials.</strong> Reusable, portable age tokens issued by trusted third parties.</div>
+        </div>
+        <div class="pref-item">
+          <span class="material-symbols-rounded">check</span>
+          <div><strong>Zero-knowledge proofs.</strong> Prove "over 18" without revealing date of birth or identity.</div>
+        </div>
+        <div class="pref-item">
+          <span class="material-symbols-rounded">check</span>
+          <div><strong>Interoperable solutions.</strong> Don't make every game roll its own.</div>
+        </div>
+        <div class="pref-item">
+          <span class="material-symbols-rounded">check</span>
+          <div><strong>Platform signals as one input.</strong> OS / app store age indicators can contribute to verification.</div>
+        </div>
+      </div>
+      <div class="pref-col pref-col--no">
+        <div class="pref-head">
+          <span class="material-symbols-rounded">block</span>
+          <span class="pref-head-label">Disfavored</span>
+        </div>
+        <div class="pref-item">
+          <span class="material-symbols-rounded">close</span>
+          <div><strong>Biometric data collection</strong> when less invasive alternatives exist. Proportionality first.</div>
+        </div>
+        <div class="pref-item">
+          <span class="material-symbols-rounded">close</span>
+          <div><strong>CPF (tax ID) checks alone.</strong> Flagged as not robust — CPFs circulate online.</div>
+        </div>
+        <div class="pref-item">
+          <span class="material-symbols-rounded">close</span>
+          <div><strong>Sole reliance on self-declaration.</strong> Explicit initial enforcement target.</div>
+        </div>
+        <div class="pref-item">
+          <span class="material-symbols-rounded">close</span>
+          <div><strong>Outsourcing entirely to platform providers.</strong> Apple / Google signals are an input, not a complete defence.</div>
+        </div>
+        <div class="pref-item">
+          <span class="material-symbols-rounded">close</span>
+          <div><strong>Gating the entire game.</strong> Verification only needs to trigger when accessing prohibited content.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="section">
+  <div class="constrain">
+    <div class="section-label anim">Enforcement window</div>
+    <h2 class="section-heading anim d1">
+      Fines aren't immediate. Letters and lawsuits already are.
+    </h2>
+    <p class="section-deck anim d2">
+      ANPD won't issue ECA Digital-specific fines until its administrative
+      regulations finalize. But "no fines yet" does not mean "no risk now."
+    </p>
+
+    <div class="timeline anim d3">
+      <div class="tl-item">
+        <div class="tl-date">Feb 12, 2026</div>
+        <div class="tl-title">ANPD industry engagement meeting</div>
+        <p class="tl-body">
+          Regulator signals it will target self-declaration-only games first.
+          Endorses on-device and interoperable age verification.
+        </p>
+      </div>
+      <div class="tl-item tl-item--active">
+        <div class="tl-date">Mar 17, 2026</div>
+        <div class="tl-title">ECA Digital enters into force</div>
+        <p class="tl-body">
+          Article 20 active. ANPD begins sending compliance letters. Private
+          plaintiffs and other regulators can litigate now — they don't have to
+          wait for ANPD's rules.
+        </p>
+      </div>
+      <div class="tl-item tl-item--future">
+        <div class="tl-date">Aug 2026</div>
+        <div class="tl-title">Expected ANPD guidance on age assurance</div>
+        <p class="tl-body">
+          Specific technical and procedural standards for how verification must
+          be implemented. The window to influence those standards is open now.
+        </p>
+      </div>
+      <div class="tl-item tl-item--future">
+        <div class="tl-date">Jan 2027</div>
+        <div class="tl-title">ANPD begins issuing ECA Digital-specific fines</div>
+        <p class="tl-body">
+          Up to <strong>R$50,000,000 per offence or 10% of Brazilian turnover.</strong>
+          Brazil has a documented history of aggressive private class-action
+          enforcement on top of regulator action.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTOM LINE -->
+<section class="bottom-line">
+  <div class="bottom-line-inner">
+    <h2 class="anim">
+      The studios investing in verification now are <em>buying the market</em> the others are leaving.
+    </h2>
+    <p class="anim d1">
+      Three strategies. One of them keeps a top-5 gaming market open while the
+      others either lose it or wait for the first fine. The Q1 2026 numbers say
+      the field is wide.
+    </p>
+  </div>
+</section>
+
+<div class="footer">
+  <div class="powered-by">
+    <svg class="neimo-wordmark neimo-wordmark--small" viewBox="0 0 66 17" xmlns="http://www.w3.org/2000/svg" fill="none" aria-label="neimo">
+      <path fill="currentColor" d="M1.39258 16.8345C0.572754 16.8345 0 16.3066 0 15.3633V5.88477C0 5.02002 0.505371 4.46973 1.33643 4.46973C2.15625 4.46973 2.71777 5.02002 2.71777 5.88477V6.71582H2.77393C3.41406 5.30078 4.64941 4.48096 6.47998 4.48096C9.10791 4.48096 10.6016 6.16553 10.6016 8.91699V15.3633C10.6016 16.3066 10.0288 16.8345 9.20898 16.8345C8.38916 16.8345 7.80518 16.3066 7.80518 15.3633V9.47852C7.80518 7.79395 7.01904 6.85059 5.42432 6.85059C3.81836 6.85059 2.79639 8.00732 2.79639 9.71436V15.3633C2.79639 16.3066 2.2124 16.8345 1.39258 16.8345ZM18.1372 16.8457C14.4985 16.8457 12.3535 14.5659 12.3535 10.7026C12.3535 6.90674 14.5435 4.4585 17.98 4.4585C21.2368 4.4585 23.4604 6.77197 23.4604 10.0063C23.4604 10.8374 22.9888 11.3315 22.1577 11.3315H15.1387V11.4214C15.1387 13.4092 16.2954 14.6895 18.1147 14.6895C19.3726 14.6895 20.1924 14.2515 21.0908 13.106C21.3828 12.7803 21.6411 12.6567 22.0342 12.6567C22.6631 12.6567 23.1572 13.061 23.1572 13.7349C23.1572 13.9482 23.0898 14.1953 22.9663 14.4424C22.1802 15.9585 20.4058 16.8457 18.1372 16.8457ZM15.1611 9.48975H20.7202C20.6641 7.76025 19.5635 6.62598 17.9912 6.62598C16.4189 6.62598 15.2734 7.78271 15.1611 9.48975ZM26.7285 3.03223C25.8638 3.03223 25.1787 2.3584 25.1787 1.51611C25.1787 0.662598 25.8638 0 26.7285 0C27.6045 0 28.2896 0.662598 28.2896 1.51611C28.2896 2.3584 27.6045 3.03223 26.7285 3.03223ZM26.7285 16.8345C25.875 16.8345 25.3359 16.2729 25.3359 15.3633V5.94092C25.3359 5.04248 25.875 4.46973 26.7285 4.46973C27.582 4.46973 28.1323 5.04248 28.1323 5.95215V15.3633C28.1323 16.2729 27.582 16.8345 26.7285 16.8345ZM31.8721 16.8345C31.0298 16.8345 30.4795 16.2954 30.4795 15.3633V5.896C30.4795 4.98633 31.0298 4.46973 31.8159 4.46973C32.6021 4.46973 33.1636 4.98633 33.1636 5.896V6.77197H33.2197C33.7363 5.39062 34.9941 4.48096 36.6113 4.48096C38.2959 4.48096 39.4976 5.3457 39.9355 6.87305H40.0029C40.5757 5.40186 41.9907 4.48096 43.709 4.48096C46.0562 4.48096 47.5947 6.06445 47.5947 8.44531V15.3633C47.5947 16.2954 47.0332 16.8345 46.2021 16.8345C45.3599 16.8345 44.7983 16.2954 44.7983 15.3633V9.13037C44.7983 7.67041 44.0347 6.83936 42.6646 6.83936C41.3169 6.83936 40.396 7.82764 40.396 9.25391V15.3633C40.396 16.2954 39.8682 16.8345 39.0371 16.8345C38.1948 16.8345 37.6782 16.2954 37.6782 15.3633V8.98438C37.6782 7.65918 36.8696 6.83936 35.5669 6.83936C34.2192 6.83936 33.2759 7.88379 33.2759 9.32129V15.3633C33.2759 16.2954 32.7031 16.8345 31.8721 16.8345ZM55.1079 16.8457C51.6152 16.8457 49.3467 14.521 49.3467 10.6577C49.3467 6.81689 51.6377 4.4585 55.1079 4.4585C58.5781 4.4585 60.8691 6.80566 60.8691 10.6577C60.8691 14.521 58.6006 16.8457 55.1079 16.8457ZM55.1079 14.6333C56.8823 14.6333 58.0278 13.1958 58.0278 10.6577C58.0278 8.13086 56.8823 6.68213 55.1079 6.68213C53.3447 6.68213 52.188 8.13086 52.188 10.6577C52.188 13.1958 53.3335 14.6333 55.1079 14.6333ZM64.1709 16.7334C63.2612 16.7334 62.5537 16.0259 62.5537 15.1162C62.5537 14.2178 63.2612 13.499 64.1709 13.499C65.0693 13.499 65.7769 14.2178 65.7769 15.1162C65.7769 16.0259 65.0693 16.7334 64.1709 16.7334Z"/>
+    </svg>
+    <span class="powered-by-label">Powered by</span>
+    <span class="kid-logo kid-logo--small" role="img" aria-label="k-ID"></span>
+  </div>
+  <span>Brazil Loot-Box Data Story · 2026-Q1</span>
+  <span>Sources · ECA Digital · Market Insights · Legal Horizons</span>
+</div>
+
+<script>
+(function() {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.anim').forEach(el => io.observe(el));
+
+  // Animate bar fills once the chart enters view
+  const barIo = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const fills = e.target.querySelectorAll('.bar-fill');
+        fills.forEach(f => {
+          const w = f.style.getPropertyValue('--w') || '0%';
+          requestAnimationFrame(() => { f.style.width = w; });
+        });
+        barIo.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.25 });
+  document.querySelectorAll('.chart-frame').forEach(el => barIo.observe(el));
+})();
+</script>
+</body>
+</html>

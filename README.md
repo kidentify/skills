@@ -89,6 +89,14 @@ A separate family of skills that **orchestrate the [Neimo MCP](https://neimo.k-i
 
 **Prerequisite:** a Neimo MCP connection. Get a free 30-day trial key at [neimo.k-id.com/connect](https://neimo.k-id.com/connect). Without it the agent will report `"Neimo MCP not configured"` and stop.
 
+### Neimo design skills
+
+A separate family of skills that **produce Neimo-styled HTML deliverables** rather than calling the k-ID API or the Neimo MCP. Use these when the agent is asked to build a visual asset (client blueprint, data story, presentation deck, blog diagram, or marketing mock).
+
+| Skill | Purpose |
+|---|---|
+| `neimo-design-system` | Neimo's visual design system for HTML deliverables. Defines the shared design DNA (grain, typography, color semantics, components) and five asset modes (Client Blueprint, Data Story, Presentation Deck, Blog Diagram, Marketing Mock) with their tokens, layouts, and component libraries. Activates on "data story", "client blueprint", "Neimo look", and similar visual-asset requests. |
+
 ## Install
 
 ### Claude Code (plugin marketplace — fastest)
