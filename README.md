@@ -91,7 +91,7 @@ A separate family of skills that **orchestrate the [Neimo MCP](https://neimo.k-i
 
 ### Neimo design skills
 
-Visual design skills that produce Neimo-styled HTML deliverables. Independent of the Neimo MCP and the k-ID API; activate when the agent is asked to build a visual asset (client blueprint, data story, presentation deck, blog diagram, or marketing mock).
+A separate family of skills that **produce Neimo-styled HTML deliverables** rather than calling the k-ID API or the Neimo MCP. Use these when the agent is asked to build a visual asset (client blueprint, data story, presentation deck, blog diagram, or marketing mock).
 
 | Skill | Purpose |
 |---|---|

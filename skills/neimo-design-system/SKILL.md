@@ -8,6 +8,10 @@ description: >-
   when building any visual HTML asset, creating charts or diagrams, designing
   client-facing documents, or when the user mentions "same style as the blueprint", "Neimo look", "data story", "blog
   graphic", or any visual deliverable.
+license: SEE-LICENSE-FILE
+metadata:
+  version: "0.1.0"
+  vendor: k-ID
 ---
 
 # Neimo Visual Design System
@@ -366,8 +370,9 @@ echo "data:image/png;base64,$(base64 -i assets/kid-logo.png)"
 }
 ```
 
-The same string goes in both `-webkit-mask` and `mask`. The base64 string for
-the current shipping logo is in `assets/kid-logo.b64.txt` for paste-ready use.
+The same string goes in both `-webkit-mask` and `mask`. Generate the data URI
+from `assets/kid-logo.png` with the bash snippet above and paste the result
+into both properties.
 
 ### Powered-by Footer
 
