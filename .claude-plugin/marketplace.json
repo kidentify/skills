@@ -8,13 +8,13 @@
   "plugins": [
     {
       "name": "k-id-skills",
-      "source": ".",
+      "source": "./",
       "description": "k-ID integration skills bundle covering both full sessioned integrations (age gate, consent, age verification, sessions, permissions, webhooks) and standalone AgeKit+ age assurance. Supports both CDK approaches — k-ID widgets (age gate, end-to-end, manage permissions, data notices) and fully custom UX workflows — plus server trust-boundary and mobile-native companion skills.",
       "version": "1.0.0"
     },
     {
       "name": "neimo-skills",
-      "source": "plugins/neimo-skills",
+      "source": "./plugins/neimo-skills",
       "description": "neimo. MCP orchestration and visual design skills. Includes neimo-compliance-audit (multi-market regulatory research across COPPA, GDPR-Kids, UK OSA, Brazil ECA Digital, Australia social-media minimum age, and 200+ jurisdictions in the neimo. knowledge base) and neimo-design-system (neimo.-styled HTML deliverables across five asset modes: client blueprint, data story, presentation deck, blog diagram, marketing mock). Requires a free neimo. MCP key from neimo.k-id.com/connect.",
       "version": "1.0.0"
     }
