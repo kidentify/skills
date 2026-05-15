@@ -1,0 +1,26 @@
+By using this repository or any code, documentation, or models in it (the Materials), you agree to these terms. Use of our API and hosted services is governed separately by our Master Services Agreement (“MSA”) signed between ourselves and you, which will prevail in the event of any conflict.
+
+1. **Scope and ownership**  
+   You may use, copy, and modify the Materials to build integrations or applications, including those that call our API, but these terms do not grant you any right to access our services without a valid account and API key issued under our MSA. All intellectual property in the Materials and our services remains with us.  
+     
+2. **No reverse engineering or circumvention**  
+   You must not use the Materials to reverse engineer, probe, bypass, disable, or otherwise interfere with any security, authentication, rate‑limiting, fraud‑prevention, or age‑verification controls on our services, or to help anyone else do so.
+
+3. **API keys and unauthorised access**  
+   You must keep any API key we issue to you secure and confidential, must not share it with unauthorised third parties or publish it in public repositories or other publicly accessible locations, and must not use the Materials to access our services without a valid API key or in breach of our MSA.  
+     
+4. **Protection of minors and age‑verification integrity**  
+   You must not use the Materials for, or make them available to others for, the purpose of enabling, assisting, or encouraging any person (including a child or minor) to evade, weaken, or bypass any age‑assurance, parental consent, or other online safety measures implemented by us or our customers.  
+     
+5. **No misleading scenarios**  
+   You must not use the Materials to build or train services whose primary purpose is to replicate our age‑verification or safety functionality in a way that is intended to or reasonably likely to confuse users about source, sponsorship, or affiliation, or to undermine the effectiveness of our services.  
+     
+6. **Termination**  
+   If you breach these terms, your licence to use the Materials ends automatically and you must stop using them and delete all copies in your possession or control.  
+     
+7. **No warranty; limitation of liability**  
+   The Materials are provided “as is” without any warranties or guarantees. To the maximum extent permitted by law, we are not liable for any loss or damage arising from your use of the Materials or any misuse by you or others.  
+     
+8. **AI outputs and reliance**  
+   You acknowledge that any use of the Materials with AI agents or other automated systems may produce outputs, suggestions, or inferences that are incomplete, inaccurate, or inappropriate, and that these may depend on how those systems are configured, prompted, and integrated by you. We do not warrant, and expressly disclaim any responsibility for, the accuracy, completeness, legality, or suitability of any conclusions, decisions, or actions taken by you or any third party in reliance on such outputs. You are solely responsible for reviewing, validating, and applying any outputs before using them in your products, workflows, or decision‑making, including in any age‑verification or safety‑critical context.
+
