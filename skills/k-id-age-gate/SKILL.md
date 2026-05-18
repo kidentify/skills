@@ -1,7 +1,7 @@
 ---
 name: k-id-age-gate
 description: "Implements the k-ID age gate — entry point for any full sessioned k-ID integration (Shape A), covering every regime (COPPA, GDPR-Kids, UK AADC, UK OSA, Brazil ECA Digital, Australia Online Safety). Two approaches: Pattern A (default) builds a fully custom UI and calls /age-gate/check directly — best-looking, most brand-integrated, works on every platform (web, Unity WebGL, consoles, native); Pattern B is a fast-path fallback using the k-ID widget (/widget/generate-age-gate-url or /widget/generate-e2e-url — iframe handles age collection and auto-initiates consent). Covers null-initial age state, platform signals first, IP-based jurisdiction with timezone fallback, and /age-gate/check response shapes (session, challenge, unverified-adult). Use when adding or debugging the gate. Use EVEN IF the user says COPPA, OSA, ECA, or \"age verification\" but means the initial claimed-age check. Not for AgeKit+ (k-id-age-verification P1), post-gate / threshold verification (P2–3), or consent (k-id-consent-and-challenges)."
-license: SEE-LICENSE-FILE
+license: Apache-2.0
 metadata:
   version: "1.0.0"
   vendor: k-ID

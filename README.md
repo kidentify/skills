@@ -102,7 +102,7 @@ A separate family of skills that **produce Neimo-styled HTML deliverables** rath
 ### Claude Code (plugin marketplace — fastest)
 
 ```bash
-/plugin marketplace add github.com/kidentify/skills
+/plugin marketplace add https://github.com/kidentify/skills
 /plugin install k-id-skills@kidentify
 ```
 
@@ -166,11 +166,13 @@ request a correction, open an issue on GitHub or email
 
 ## License and acceptable use
 
-License: **TBD** — see [`LICENSE`](./LICENSE).
+Licensed under the **Apache License 2.0** — see [`LICENSE`](./LICENSE).
 
-Regardless of the final license, these skills may not be used or modified
-to circumvent age verification, parental consent, or other child-protection
-controls. See [`ACCEPTABLE_USE.md`](./ACCEPTABLE_USE.md) for the full policy.
+Additional acceptable-use terms apply: these skills may not be used or
+modified to circumvent age verification, parental consent, or other
+child-protection controls, and your use of the k-ID API and hosted services
+remains governed by your MSA. See [`NOTICE`](./NOTICE) for the full
+acceptable-use policy and additional terms.
 
 ## Related
 

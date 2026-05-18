@@ -1,7 +1,7 @@
 ---
 name: k-id-age-verification
 description: "Implements k-ID age verification and assurance for all three CDK patterns: (1) standalone AgeKit+ with no session (single age-proof — UK OSA 18+, age-restricted downloads, Australia social-media minimum age), (2) unverified-adult verification after the gate in a sessioned integration, (3) per-permission threshold verification (Brazil ECA Digital loot-boxes / targeted ads, UK OSA 18+, Australia social media, any verifiedAgeThreshold regime). Covers /age-verification/perform-access-age-verification (with or without sessionId), /session/upgrade returning CHALLENGE_SESSION_UPGRADE_BY_AGE_ASSURANCE, iframe modal (never window.open), in-app prompt, new-tab return-path detection (server poll + BroadcastChannel + visibility wake), result via webhook or polling, race-free session update. References AgeKit+ waterfall and ConnectID. Use for AgeKit+, unverified sessions, verifiedAgeThreshold, highly effective age assurance, or \"user verified but app never unlocked\". Not the initial gate or consent (see sibling skills)."
-license: SEE-LICENSE-FILE
+license: Apache-2.0
 metadata:
   version: "1.0.0"
   vendor: k-ID

@@ -2,7 +2,7 @@
 name: k-id-server-trust-boundary
 description: >
   Companion skill for every k-ID integration — establishes the server as the only place the API key lives, sets up a server-side proxy for all client-bound k-ID calls, enforces `session.permissions[name].enabled === true` on privileged route handlers, and runs pre-flight connectivity checks so test-vs-prod key and URL mismatches are caught before anything else is wired up. Use at the start of any k-ID integration, whenever the user asks where to put the API key, or when diagnosing 401/400 responses that appear to come from client code but are actually environment mismatches. Not a feature skill on its own — pair with k-id-age-gate, k-id-consent-and-challenges, k-id-age-verification, k-id-sessions-and-permissions, or k-id-webhooks.
-license: SEE-LICENSE-FILE
+license: Apache-2.0
 metadata:
   version: "1.0.0"
   vendor: k-ID

@@ -1,7 +1,7 @@
 ---
 name: k-id-integration
 description: "Router for k-ID integration work. Activates when the user is building, planning, or debugging a k-ID integration, or adding age-appropriate compliance — COPPA (US), GDPR-Kids (EU), UK AADC, UK OSA, Brazil ECA Digital, Australia Online Safety / social-media minimum age, or similar — in an app, game, site, or platform. Also activates on \"age assurance\", \"age verification\", \"AgeKit+\", \"parental consent\", \"age gate\", \"widget\", \"custom age gate\", and \"threshold verification\". Handles both full sessioned integrations (CDK — age gate + sessions + permissions + consent + verification) and standalone AgeKit+ (single age-proof, no persistent session). Within CDK, supports both approaches: fully custom UX (call /age-gate/check and /challenge/* directly, render your own UI — default, most brand-integrated) and pre-built k-ID widgets (age-gate, end-to-end, manage-permissions, data-notices iframes — fast-path fallback). Picks the right sibling skill(s). Not for generic age-rating or Compliance Studio configuration."
-license: SEE-LICENSE-FILE
+license: Apache-2.0
 metadata:
   version: "1.0.0"
   vendor: k-ID

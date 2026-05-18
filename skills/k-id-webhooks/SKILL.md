@@ -2,7 +2,7 @@
 name: k-id-webhooks
 description: >
   Implements a k-ID webhook receiver — HMAC-SHA256 signature verification against the RAW request body (not the parsed JSON), timestamp tolerance, idempotency keyed by event ID, and per-event handlers for Challenge.StateChange, Verification.Result, Verification.Revoke, ParentalConsent.Granted, Session.ChangePermissions, Session.Delete, and Test. Use when building or debugging a webhook endpoint for k-ID, when the test webhook returns 401, when events are received but not acted on, or when sessions drift from Family Connect changes. Not for client-side postMessage handling (see k-id-age-verification) and not for in-app polling (see k-id-consent-and-challenges or k-id-sessions-and-permissions).
-license: SEE-LICENSE-FILE
+license: Apache-2.0
 metadata:
   version: "1.0.0"
   vendor: k-ID

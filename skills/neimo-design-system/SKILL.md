@@ -8,7 +8,7 @@ description: >-
   when building any visual HTML asset, creating charts or diagrams, designing
   client-facing documents, or when the user mentions "same style as the blueprint", "Neimo look", "data story", "blog
   graphic", or any visual deliverable.
-license: SEE-LICENSE-FILE
+license: Apache-2.0
 metadata:
   version: "0.1.0"
   vendor: k-ID

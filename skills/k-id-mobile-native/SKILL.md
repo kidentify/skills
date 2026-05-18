@@ -1,7 +1,7 @@
 ---
 name: k-id-mobile-native
 description: "Companion skill for iOS, Android, and Unity k-ID integrations — collects platform-supplied age signals (iOS Declared Age Range, Google Play Families, Unity user data) before the age gate, passes them on /age-gate/check with correct trust levels, and renders every k-ID widget URL (age gate, end-to-end, consent, age verification, manage-permissions, data notices) in a system browser — Android **Custom Tabs** or iOS **ASWebAuthenticationSession** (SFSafariViewController also OK). Discourages Android `WebView` / iOS `WKWebView`: no WebAuthn means no k-ID **AgeKeys** — a UX downgrade and a compliance limit where AgeKeys back \"highly effective age assurance\". Uses the universal `redirectUrl` deep-link callback for result delivery; reserves DOM `postMessage` for the WebView fallback. Covers deep-link returns from Family Connect / asktoplay.com and third-party verifier apps. Use for native apps, App Store Accountability Acts, Google Play Families, Unity, AgeKeys, or iOS popup failures. Not for browser-only web."
-license: SEE-LICENSE-FILE
+license: Apache-2.0
 metadata:
   version: "1.0.0"
   vendor: k-ID

@@ -8,7 +8,7 @@
   },
   "homepage": "https://docs.k-id.com/get-started/agent-skills",
   "repository": "https://github.com/kidentify/skills",
-  "license": "SEE-LICENSE-FILE",
+  "license": "Apache-2.0",
   "keywords": [
     "k-id",
     "kid",

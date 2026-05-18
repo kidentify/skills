@@ -8,7 +8,7 @@
   },
   "homepage": "https://neimo.k-id.com",
   "repository": "https://github.com/kidentify/skills",
-  "license": "SEE-LICENSE-FILE",
+  "license": "Apache-2.0",
   "keywords": [
     "neimo",
     "compliance-audit",

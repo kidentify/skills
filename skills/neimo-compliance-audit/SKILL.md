@@ -1,7 +1,7 @@
 ---
 name: neimo-compliance-audit
 description: "Run a multi-market children's-digital-safety compliance audit for a game, app, or platform using the Neimo MCP regulatory knowledge base. Activates when the user asks to audit a product against COPPA (US), GDPR Article 8 (EU), UK Children's Code / Online Safety Act, Brazil ECA Digital, Australia Online Safety / social-media minimum age, or other kids' regulatory regimes across multiple markets at once. Produces a structured findings document keyed by jurisdiction with citations to primary sources and a tiered must / should / consider obligations list. Requires a working Neimo MCP connection (https://neimo.k-id.com/connect)."
-license: SEE-LICENSE-FILE
+license: Apache-2.0
 metadata:
   version: "0.1.0"
   vendor: k-ID

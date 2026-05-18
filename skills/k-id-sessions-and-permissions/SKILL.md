@@ -2,7 +2,7 @@
 name: k-id-sessions-and-permissions
 description: >
   Enforces k-ID permissions correctly on both client and server — renders one permission-gated UI control per `session.permissions` entry (not a hardcoded subset), picks the right lock label for each status and manager (including `verifiedAgeThreshold` permissions such as Brazil ECA Digital loot-boxes / targeted ads at 18, direct marketing at 12, UK Online Safety Act 18+ features, and Australia social media minimum age), calls `/session/upgrade` with the exact body shape, handles the `CHALLENGE_SESSION_UPGRADE_BY_AGE_ASSURANCE` branch for threshold permissions, and runs top-level session refresh plus discovery for the product's real permission slugs. Use when building the post-gate app screen, gating features, adding permission upgrade flows, or enforcing permissions on server endpoints. Not for the initial age gate (see k-id-age-gate) and not for consent polling or age-assurance UX (see k-id-consent-and-challenges or k-id-age-verification).
-license: SEE-LICENSE-FILE
+license: Apache-2.0
 metadata:
   version: "1.0.0"
   vendor: k-ID

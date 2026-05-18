@@ -1,7 +1,7 @@
 ---
 name: k-id-consent-and-challenges
 description: "Implements the parental-consent flow for k-ID minors — the GUARDIAN-managed path where a trusted adult grants permissions for a child (COPPA parental consent, EU GDPR-Kids verifiable parental consent, UK AADC equivalent). Supports both approaches: Pattern A (default) builds a fully custom consent screen (QR + OTP + email + direct link) and calls /challenge/send-email and /challenge/generate-otp directly with top-level polling — a brand-fit, inline experience; Pattern B is a fast-path fallback using the end-to-end widget (/widget/generate-e2e-url — iframe handles age gate, consent, data notices, permissions) or the manage-permissions widget (/widget/generate-manage-session-permissions-url — post-gate consent only). Use when building the consent screen, wiring challenge send / status endpoints, handling `challengeId` without a session, or diagnosing why approvals don't reach the app. Not for age assurance or threshold verification (k-id-age-verification), not for the age gate itself (k-id-age-gate)."
-license: SEE-LICENSE-FILE
+license: Apache-2.0
 metadata:
   version: "1.0.0"
   vendor: k-ID
