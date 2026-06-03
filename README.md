@@ -86,6 +86,7 @@ A separate family of skills that **orchestrate the [Neimo MCP](https://neimo.k-i
 | Skill | Purpose |
 |---|---|
 | `neimo-compliance-audit` | Multi-market compliance audit. Orchestrates Neimo's `lookup_regulation`, `compare_regulations`, `lookup_state_laws`, `search_kb_semantic`, `search_primary_sources`, `lookup_market_insights` to produce a structured findings document with citations and a tiered must / should / consider obligations table. |
+| `regulatory-watch` | Detect regulatory drift in an existing compliance artefact (control register, DPIA, jurisdiction pack). Parses xlsx/csv/docx/md, queries neimo. MCP, web-confirms named instruments, emits NEW / AMENDED / NOW-STALE / DEPRECATED findings with citations. |
 
 **Prerequisite:** a Neimo MCP connection. Get a free trial key at [neimo.k-id.com/connect](https://neimo.k-id.com/connect). Without it the agent will report `"Neimo MCP not configured"` and stop.
 
