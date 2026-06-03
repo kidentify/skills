@@ -15,7 +15,7 @@
     {
       "name": "neimo-skills",
       "source": "./plugins/neimo-skills",
-      "description": "neimo. MCP orchestration and visual design skills. Includes neimo-compliance-audit (multi-market regulatory research across COPPA, GDPR-Kids, UK OSA, Brazil ECA Digital, Australia social-media minimum age, and 200+ jurisdictions in the neimo. knowledge base) and neimo-design-system (neimo.-styled HTML deliverables across five asset modes: client blueprint, data story, presentation deck, blog diagram, marketing mock). Requires a free neimo. MCP key from neimo.k-id.com/connect.",
+      "description": "neimo. MCP orchestration and visual design skills. Includes neimo-compliance-audit (multi-market regulatory research across COPPA, GDPR-Kids, UK OSA, Brazil ECA Digital, Australia social-media minimum age, and 200+ jurisdictions in the neimo. knowledge base), regulatory-watch (detect regulatory drift in existing compliance artefacts against the neimo. KB with web confirmation), and neimo-design-system (neimo.-styled HTML deliverables across five asset modes: client blueprint, data story, presentation deck, blog diagram, marketing mock). Requires a free neimo. MCP key from neimo.k-id.com/connect.",
       "version": "1.0.0"
     }
   ]
