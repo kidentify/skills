@@ -87,6 +87,7 @@ A separate family of skills that **orchestrate the [Neimo MCP](https://neimo.k-i
 |---|---|
 | `neimo-compliance-audit` | Multi-market compliance audit. Orchestrates Neimo's `lookup_regulation`, `compare_regulations`, `lookup_state_laws`, `search_kb_semantic`, `search_primary_sources`, `lookup_market_insights` to produce a structured findings document with citations and a tiered must / should / consider obligations table. |
 | `regulatory-watch` | Detect regulatory drift in an existing compliance artefact (control register, DPIA, jurisdiction pack). Parses xlsx/csv/docx/md, queries neimo. MCP, web-confirms named instruments, emits NEW / AMENDED / NOW-STALE / DEPRECATED findings with citations. |
+| `pp-tunas-risk-assessment` | Indonesia PP Tunas (PP No. 17/2025 + Permen 9/2026) child-safety risk-level self-assessment per Kepmen 142/2026. Screens Appendix I scope, scores 58 coded Assessment Parameters across seven statutory aspects, computes HIGH-RISK / LOW-RISK determination, and produces the fileable worksheet plus a supplementary k-ID enforcement layer. |
 
 **Prerequisite:** a Neimo MCP connection. Get a free trial key at [neimo.k-id.com/connect](https://neimo.k-id.com/connect). Without it the agent will report `"Neimo MCP not configured"` and stop.
 
