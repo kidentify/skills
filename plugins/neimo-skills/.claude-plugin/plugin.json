@@ -1,6 +1,6 @@
 {
   "name": "neimo-skills",
-  "description": "neimo. MCP orchestration and visual design skills. Includes neimo-compliance-audit for multi-market regulatory research (COPPA, GDPR-Kids, UK OSA, Brazil ECA Digital, Australia social-media minimum age, and 200+ jurisdictions in the neimo. knowledge base), regulatory-watch for detecting regulatory drift in existing compliance artefacts (control registers, DPIAs, jurisdiction packs) against the neimo. KB with web confirmation, and neimo-design-system for producing neimo.-styled HTML deliverables (client blueprints, data stories, presentation decks, blog diagrams, marketing mocks). Use when the agent needs to research children's-digital-safety regulation, re-check a compliance document for regulatory drift, or build a visual asset in the neimo. look. Requires a free neimo. MCP key from neimo.k-id.com/connect.",
+  "description": "neimo. MCP orchestration and visual design skills. Includes neimo-compliance-audit for multi-market regulatory research (COPPA, GDPR-Kids, UK OSA, Brazil ECA Digital, Australia social-media minimum age, and 200+ jurisdictions in the neimo. knowledge base), regulatory-watch for detecting regulatory drift in existing compliance artefacts (control registers, DPIAs, jurisdiction packs) against the neimo. KB with web confirmation, pp-tunas-risk-assessment for Indonesia PP Tunas (PP No. 17/2025 + Permen 9/2026) children's-safety risk assessment with seven-factor scoring, feature × age gating matrix, k-ID enforcement mapping, and Excel risk register output, and neimo-design-system for producing neimo.-styled HTML deliverables (client blueprints, data stories, presentation decks, blog diagrams, marketing mocks). Use when the agent needs to research children's-digital-safety regulation, re-check a compliance document for regulatory drift, assess Indonesia PP Tunas compliance, or build a visual asset in the neimo. look. Requires a free neimo. MCP key from neimo.k-id.com/connect.",
   "version": "1.0.0",
   "author": {
     "name": "k-ID",
@@ -22,6 +22,10 @@
     "design-system",
     "regulatory-watch",
     "compliance-register",
-    "regulatory-drift"
+    "regulatory-drift",
+    "pp-tunas",
+    "pp-tunas-risk-assessment",
+    "indonesia",
+    "child-online-protection"
   ]
 }
