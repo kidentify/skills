@@ -18,7 +18,7 @@ description: >-
   NOT for setup (kid-one-shot), NOT for a deck (the deck skills).
 license: Apache-2.0
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
   vendor: k-ID
 ---
 
@@ -77,13 +77,12 @@ the conversation) but you must still **confirm** rather than silently assume.
 Ask for these, ideally in one consolidated question rather than a slow
 drip-feed:
 
-1. **Audience / framing.** Are they a **k-ID customer** (external — a
-   publisher/developer learning the rules that apply to their product) or
-   **k-ID internal** (sales, CS, a new hire learning the landscape they sell
-   into)? This sets register. Customer-facing teaching stays product-neutral
-   and reassuring and never disparages other vendors. Internal teaching can be
-   franker about commercial and competitive framing and can connect rules to
-   where k-ID's products fit.
+1. **Who the lesson is for.** Is the learner studying for themselves, briefing
+   their team, or advising a client? And is this tied to a specific product they
+   build or operate, or general understanding? This sets the register and how
+   concrete the examples should be. Keep teaching product-neutral and
+   professional — explain the law, not any particular vendor's solution, and
+   don't disparage named vendors.
 2. **Role.** DPO / legal counsel, product manager, engineer, founder/exec,
    marketer, trust & safety, etc. Role drives *which sections* you pull and at
    *what depth* — see the role map below.
@@ -102,20 +101,55 @@ drip-feed:
 If the person already gave some of this in their opening message, reflect it
 back and only ask for the gaps.
 
+### Presenting the intake (works in any chat client)
+
+Many clients (ChatGPT, plain chat) have **no interactive picker**, so the intake
+must read well as plain markdown. Don't run the inputs together in a "share role,
+product, jurisdictions, depth, and format" sentence, and don't ask the same thing
+twice (a vague "for yourself or a team?" followed by a separate "now list role,
+product…"). Present **one** tight, scannable block with a built-in escape hatch:
+
+- Open with a single friendly line ("I'll teach this live from neimo. and cite
+  every rule").
+- List the inputs as a short **bulleted menu with bold labels**, each with 2–3
+  concrete examples, so the learner can answer in one line.
+- Offer a **fast path** — "or just say *go* and I'll assume sensible defaults" —
+  then name the defaults (practitioner depth, guided conversation, the market they
+  mentioned) so nobody is blocked by a form.
+- Keep it to ~6 lines. One ask, not two.
+
+Template:
+
+> Happy to — I'll teach this live from neimo. and cite every rule.
+> Tell me (one line is fine, or say **"go"** for sensible defaults):
+> - **Role** — legal · product · engineering · trust & safety · exec
+> - **Product** — e.g. kids' mobile game, teen social app, EdTech
+> - **Markets** — e.g. US, UK, EU, AU, BR
+> - **Depth** — exec overview or practitioner detail
+> - **Format** — guided chat · cheat-sheet · quiz · presentation · interactive
+>
+> Example: "Product, teen social app, US/UK/EU/AU, practitioner, guided chat."
+
+If the client supports an interactive picker, you may use it instead — but this
+plain-markdown version is the baseline and must always render cleanly.
+
 ## Step 1.5 — Pick the lesson format
 
 Different learners retain in different ways, and the same rule lands differently
-as a slider, a slide, or a quiz. Confirm a format before teaching — ideally
-folded into the same consolidated intake question (use `AskUserQuestion` so the
-choice is one tap). You may combine formats (e.g. interactive + quiz), and you
-may switch mid-session if the learner asks.
+as a slider, a slide, or a quiz. Confirm a format before teaching — folded into
+the single intake ask (see "Presenting the intake"). If your chat client offers
+an interactive picker, use it so the choice is one tap; otherwise present the
+format menu as plain markdown. You may combine formats (e.g. interactive + quiz),
+and you may switch mid-session if the learner asks.
 
 - **Interactive explorer.** Build a `show_widget` interactive per concept —
   sliders, toggles, clickable cards that reveal the cited neimo. row, scenario
   "reveal answer" buttons, side-by-side market comparisons. One concept per
   widget; keep the explanation in the chat prose around it, not inside the
   widget. Best for product/engineering learners and anyone who learns by
-  manipulating.
+  manipulating. Requires a client that can render interactive widgets — if that's
+  unavailable (e.g. plain chat), don't promise a widget the client can't show;
+  offer guided conversation or a cheat-sheet instead.
 - **Guided conversation (default).** The turn-by-turn Socratic rhythm in Step 3:
   a tight explanation + its citation + a forward prompt that lets the learner
   steer. Best when the learner wants to drive and ask follow-ups.
@@ -318,14 +352,16 @@ build an artifact — and a good tutor knows when the learner's real need has
 shifted. When that happens, name it and hand off rather than half-doing another
 skill's job:
 
-- "Is *our live config* actually compliant / what's drifted?" → that's an
-  audit. Point them to **compliance-health-check**.
-- "Set us up / onboard our product / build the DPIA & launch package" → that's
-  a rollout. Point them to **kid-one-shot** (or **k-id-compliance-studio-onboard**).
-- "Build me a deck/slides to train my team" → that's a deliverable. Point them
-  to the relevant deck skill.
-- "Help me actually integrate the age gate / consent flow in code" → that's the
-  **k-id-integration** family.
+- "Is *our live configuration* actually compliant / what's drifted?" → that's a
+  compliance **audit** of a live setup, not a lesson. Point them to a compliance
+  assessment workflow or their counsel.
+- "Set us up / onboard our product / build the DPIA & launch package" → that's an
+  **implementation/onboarding** project, not teaching.
+- "Build me a polished, branded deck to train my team" → that's a design
+  **deliverable**. (This skill can teach in a presentation *style* and generate a
+  basic cited deck, but it isn't a deck-design tool.)
+- "Help me actually integrate the age gate / consent flow in code" → that's an
+  **engineering integration** task.
 
 Teaching can *precede* any of these — it's often the right first step. Just
 don't let the lesson quietly mutate into an unsourced compliance opinion.
@@ -359,7 +395,8 @@ don't let the lesson quietly mutate into an unsourced compliance opinion.
 - Implying you checked "what's coming" for a market Legal Horizons doesn't cover.
   Read `availableJurisdictions`; outside that list, fall back to `upcoming-changes`
   or say there's no horizons coverage — never present silence as "nothing pending."
-- Disparaging other vendors in customer-facing mode.
+- Disparaging named vendors, or steering the lesson toward any particular
+  vendor's product. Teach the law; stay product-neutral.
 
 ## neimo. tool quick reference
 
