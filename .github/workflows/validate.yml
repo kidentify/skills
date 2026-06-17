@@ -81,3 +81,48 @@ jobs:
             exit 1
           fi
           echo "All docs.k-id.com links OK"
+
+  validate-description-length:
+    name: SKILL.md description byte limit (ChatGPT)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Check descriptions are <= 1024 UTF-8 bytes
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import re, sys
+          from pathlib import Path
+
+          def parse_description(text: str) -> str:
+              fm = re.match(r'^---\n(.*?)\n---', text, re.S)
+              if not fm:
+                  raise ValueError('missing frontmatter')
+              block = fm.group(1)
+              folded = re.search(r'^description:\s*>-\n((?:  .+\n)+)', block, re.M)
+              if folded:
+                  lines = [re.sub(r'^  ', '', ln) for ln in folded.group(1).splitlines() if ln.strip()]
+                  return ' '.join(lines)
+              quoted = re.search(r'^description:\s*"(.*)"\s*$', block, re.M)
+              if quoted:
+                  return quoted.group(1)
+              plain = re.search(r'^description:\s*(.+)$', block, re.M)
+              if plain:
+                  return plain.group(1).strip().strip('"').strip("'")
+              raise ValueError('missing description')
+
+          failed = 0
+          for skill_md in sorted(Path('skills').glob('*/SKILL.md')):
+              if skill_md.parent.name.startswith('k-id-'):
+                  continue  # k-ID integration skills are not packaged for ChatGPT upload
+              text = skill_md.read_text(encoding='utf-8')
+              desc = parse_description(text)
+              size = len(desc.encode('utf-8'))
+              print(f'{skill_md.parent.name}: {size} bytes')
+              if size > 1024:
+                  print(f'  FAIL: exceeds 1024-byte limit by {size - 1024}')
+                  failed += 1
+          sys.exit(failed)
+          PY
