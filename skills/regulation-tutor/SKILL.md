@@ -135,6 +135,32 @@ Whatever the format, the one rule holds: every operative fact comes from a
 neimo. tool result in this session, and every claim shows its citation and
 verification status. The format flexes the delivery; grounding does not bend.
 
+### Artifact freshness (static formats)
+
+Three of the formats — interactive explorer, presentation walkthrough, and
+cheat-sheet — produce a **static artifact** that outlives the session. The moment
+a neimo. value is baked into a widget's JavaScript, a slide, or a markdown table,
+it stops being live: the artifact can't re-query, and a learner who reopens it
+weeks later sees frozen law presented as current. That is the exact failure this
+skill exists to prevent, so every generated artifact MUST:
+
+- **Stamp it.** Show an "as-of <date>" plus the neimo. section(s) and market it
+  was pulled from, visibly on the artifact itself — a deck footer, a cheat-sheet
+  header, a widget caption. The reader must be able to see how old the facts are.
+- **Say how to refresh.** Add a one-line "re-run regulation-tutor to refresh"
+  note, so a stale artifact advertises its own staleness.
+- **Keep the citation on the fact.** Each baked-in value keeps its source link /
+  named instrument and verification status next to it — never strip the citation
+  just because it now lives in a slide or a table cell.
+- **Prefer live over frozen.** For interactive artifacts, call neimo. at runtime
+  rather than embedding values wherever the environment allows it; embed only as a
+  fallback, and when you do, treat the embedded values as a dated snapshot, not
+  the source of truth.
+
+A static artifact with no date is a confident, unsourced claim waiting to happen.
+Treat shipping one without an as-of stamp and refresh note as a grounding
+violation, not a formatting choice.
+
 ## Step 2 — Set the lesson plan
 
 Once you have intake, briefly tell the learner what you'll cover and in what
@@ -182,6 +208,17 @@ The rhythm of a good lesson:
    will swamp the lesson; reserve it for when the learner genuinely wants the
    whole landscape, and even then summarize, don't dump.
 
+   **Legal Horizons covers a fixed, short jurisdiction list — not all 200+
+   markets.** It returns the supported set in `availableJurisdictions` (at time of
+   writing ~14: AE, AU, BR, ES, FR, ID, IN, MY, TR, UK, US federal/state, VN).
+   Always read that field. If the learner's market is NOT in it (e.g. Japan,
+   Korea, Canada, Germany), do not imply you checked "what's coming" — instead
+   fall back to the structured `upcoming-changes` section via `lookup_regulation`
+   (it's per-market and may exist where Horizons doesn't), and if that's empty
+   too, say plainly "neimo. has no horizons/upcoming-changes coverage for this
+   market yet" rather than implying nothing is on the way. Absence of a horizons
+   item is absence of *coverage*, never proof of *no movement*.
+
 2. **Teach the *whole* neimo. row, not a remembered shorthand.** This is the
    subtlest grounding trap and the one most likely to slip past you. When you
    pull a rule, neimo. often returns a fuller, more specific answer than the
@@ -194,6 +231,30 @@ The rhythm of a good lesson:
    long, you may summarize it *as a summary the learner can see is partial*
    ("neimo. lists nine principles; the load-bearing ones for you are…"), but
    never silently substitute the shorthand for the source.
+
+   **The oversized-row procedure (slice, don't dump).** Some rows aren't a single
+   rule but a packed list — the US "special rules for social media" row
+   concatenates dozens of state laws with mixed statuses, and sections like
+   `settings` (~40+ rows) can truncate or spill. "Teach the whole row" and "don't
+   dump" only conflict if you treat such a row as one undivided block. Resolve it
+   in this fixed order:
+   1. **Teach the learner's slice in full first.** The state(s) they ship in, the
+      feature they're adding — give those completely, not the first row or a
+      generic skim.
+   2. **Label the remainder as an explicitly partial summary.** e.g. "this row
+      also lists ~20 other US states; the ones live in your markets are X and Y."
+      Never present a trimmed view as the whole row.
+   3. **Recover truncation; never hide it.** If the result is capped or spilled
+      (`truncated: true`, a spill file, a 50-row cap), say so and re-query the
+      learner's specific state/feature by name with `lookup_regulation(field=…)`
+      or `search_kb_semantic` until you have their slice — a cap must never
+      silently drop the row they care about.
+   4. **Offer the full enumeration on request.** The learner can always ask for
+      every state/feature; give it then, structured, not as a wall mid-lesson.
+
+   Dropping the one state or feature the learner actually ships in — because it
+   was buried in a giant row you summarized — is the completeness failure this
+   skill most needs to avoid.
 
 3. **Pull the most role-relevant row *within* a section, not just the first.**
    Sections like `settings`, `age-assurance`, and `parental-consent` hold many
@@ -281,13 +342,23 @@ don't let the lesson quietly mutate into an unsourced compliance opinion.
   the row that actually governs the learner's role and product.
 - Dumping a full `market_profile` into the chat. It's huge and it kills the
   lesson's rhythm. Pull targeted sections.
+- Summarizing a giant/packed row (US social-media states, `settings`) in a way
+  that omits the learner's own state or feature. Teach their slice in full, label
+  the rest as partial, and recover any truncation — see the oversized-row
+  procedure.
 - Skipping intake — or assuming a format. A generic COPPA explainer is a
   failure; so is defaulting to a wall of prose when the learner would learn
   better from an interactive, a quiz, or a deck. If it's not personalized to
   their role, product, and preferred format, the skill has failed at its one job.
 - Burying or omitting citations. The citation is the proof; show it.
+- Shipping a widget, deck, or cheat-sheet with no "as-of" date or refresh note.
+  A frozen value with no visible age reads as current law and silently goes
+  stale — date it and say how to refresh, or don't ship it.
 - Drifting into "here's what your product must do to comply" as if you'd audited
   it. Teach the rule; hand off the assessment.
+- Implying you checked "what's coming" for a market Legal Horizons doesn't cover.
+  Read `availableJurisdictions`; outside that list, fall back to `upcoming-changes`
+  or say there's no horizons coverage — never present silence as "nothing pending."
 - Disparaging other vendors in customer-facing mode.
 
 ## neimo. tool quick reference
@@ -304,7 +375,9 @@ row shape you'll get back. The essentials:
 - `lookup_online_safety_resources(topic, market?)` — broad search across all KBs.
 - `market_profile(market)` — whole-country snapshot; large, use sparingly.
 - `lookup_legal_horizons(...)` / `lookup_regulation_events(...)` — recent and
-  upcoming developments.
+  upcoming developments. **Covers a fixed ~14-jurisdiction list only** (see
+  `availableJurisdictions` in the result); for any market outside it, fall back to
+  the `upcoming-changes` section and don't imply horizons were checked.
 - `compare_regulations(...)` — same topic across markets, for "how does this
   differ in X vs Y" turns.
 - `submit_feedback(...)` — only after the learner says yes to sharing feedback.
