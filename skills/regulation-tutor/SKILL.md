@@ -18,7 +18,7 @@ description: >-
   NOT for setup (kid-one-shot), NOT for a deck (the deck skills).
 license: Apache-2.0
 metadata:
-  version: "0.2.0"
+  version: "0.1.0"
   vendor: k-ID
 ---
 
