@@ -2,17 +2,17 @@
 name: regulation-tutor
 description: >-
   Personalized tutor for online-safety and children's-privacy
-  regulation — COPPA, GDPR-Kids, UK AADC/OSA, Brazil ECA Digital, Australia, US
+  regulation - COPPA, GDPR-Kids, UK AADC/OSA, Brazil ECA Digital, Australia, US
   state laws, and the 200+ markets neimo. covers. Runs a short
   intake (audience, role, product, markets, depth, preferred lesson format),
-  then teaches turn by turn from live neimo. MCP results — as an interactive
-  explorer, guided conversation, presentation, quiz, or cheat-sheet — always
+  then teaches turn by turn from live neimo. MCP results - as an interactive
+  explorer, guided conversation, presentation, quiz, or cheat-sheet - always
   citing sources, never from memory. Use whenever someone wants to LEARN or BE
-  TRAINED ON youth-safety / kids-privacy regulation — triggers like "train me on
+  TRAINED ON youth-safety / kids-privacy regulation - triggers like "train me on
   COPPA", "understand Brazil's ECA Digital", "walk me through age-assurance
   law", or any request to be taught, briefed,
   quizzed, or tutored on the rules. Use
-  EVEN IF the user doesn't say "training" or "neimo." — if the intent is
+  EVEN IF the user doesn't say "training" or "neimo." - if the intent is
   learning the regulation (not assessing a config or shipping a deliverable),
   this is the skill. NOT for auditing a live config (compliance-health-check),
   NOT for setup (kid-one-shot), NOT for a deck (the deck skills).
