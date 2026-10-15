@@ -8,7 +8,8 @@ the **downstream obligations** a HIGH/LOW profile triggers (age assurance, paren
 consent, monetization floors, notices, trust & safety, penalties) and supply the
 **verbatim citations** — for the *supplementary* Obligations and Sources tabs, not the
 worksheet. Also use it to check whether the regulation has been **amended** since the
-embedded catalog version (`lookup_recent_updates` / `lookup_legal_horizons`, ID).
+embedded catalog version (`lookup_recent_updates(market="ID")` /
+`lookup_legal_horizons(jurisdiction="ID")`).
 
 This file is the *method* for that grounding. The values neimo. returns are the
 *answers*. Never substitute the illustrative numbers below for a live lookup — they

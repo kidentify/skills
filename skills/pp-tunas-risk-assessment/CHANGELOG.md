@@ -1,5 +1,10 @@
 # pp-tunas-risk-assessment — release notes
 
+## 1.0.1
+
+- The amendment check uses `lookup_recent_updates` and `lookup_legal_horizons`, not an
+  internal-only tool that customer MCP clients cannot list.
+
 ## 1.0.0
 
 Indonesia PP Tunas (PP No. 17/2025 + Permen No. 9/2026) children's-safety risk-level
