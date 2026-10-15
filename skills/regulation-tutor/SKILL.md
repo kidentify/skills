@@ -221,8 +221,9 @@ The rhythm of a good lesson:
    `lookup_regulation(market, domain, field?)` when you know the market and
    section. Use `discover_sections(market)` first if you're unsure what exists.
    Use `search_kb_semantic` for enforcement actions and cross-cutting questions
-   ("FTC COPPA settlement", "loot box rules"), and `lookup_legal_horizons` /
-   `lookup_regulation_events` for recent developments and what's coming. Pull
+   ("FTC COPPA settlement", "loot box rules"), `lookup_legal_horizons` for
+   recent developments and what's coming, and `lookup_recent_updates` for what
+   changed recently in neimo.'s own data. Pull
    *targeted* sections — a full `market_profile` can run to 100K+ characters and
    will swamp the lesson; reserve it for when the learner genuinely wants the
    whole landscape, and even then summarize, don't dump.
@@ -396,10 +397,12 @@ row shape you'll get back. The essentials:
   questions, when you don't know the section.
 - `lookup_online_safety_resources(topic, market?)` — broad search across all KBs.
 - `market_profile(market)` — whole-country snapshot; large, use sparingly.
-- `lookup_legal_horizons(...)` / `lookup_regulation_events(...)` — recent and
-  upcoming developments. **Covers a fixed ~14-jurisdiction list only** (see
+- `lookup_legal_horizons(...)` — recent and upcoming developments. **Covers a
+  fixed ~14-jurisdiction list only** (see
   `availableJurisdictions` in the result); for any market outside it, fall back to
   the `upcoming-changes` section and don't imply horizons were checked.
+- `lookup_recent_updates(...)` — recent published changes to neimo.'s own data,
+  with the old and new value. For "what changed lately" turns.
 - `compare_regulations(...)` — same topic across markets, for "how does this
   differ in X vs Y" turns.
 - `submit_feedback(...)` — only after the learner says yes to sharing feedback.

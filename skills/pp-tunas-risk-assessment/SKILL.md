@@ -75,7 +75,7 @@ Permen 9/2026; the skill surfaces them — grounded live in neimo. — in the
 
 Before filing, also sanity-check the embedded catalog against the current gazette:
 the regulation is new and the English text here is an unofficial translation. Use
-`lookup_recent_updates` / `lookup_regulation_events` (market `ID`) to check nothing
+`lookup_recent_updates` / `lookup_legal_horizons` (market `ID`) to check nothing
 has been amended since `version: kepmen142-2026-v1`.
 
 ## Workflow
