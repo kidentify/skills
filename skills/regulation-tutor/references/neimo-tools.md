@@ -55,7 +55,7 @@ Notes for teaching:
 | `lookup_online_safety_resources(topic, market?)` | Broad keyword search across ALL neimo. KBs (not just gaming). Use when topic may span KBs or you don't know the section. |
 | `market_profile(market)` | Whole-country snapshot, every section. LARGE (100K+ chars) — use sparingly and summarize; never dump into chat. |
 | `lookup_legal_horizons(jurisdiction?, query?, publishMonth?)` | k-ID's Legal Horizons newsletter archive — recent regulatory developments and legislative changes. |
-| `lookup_regulation_events(...)` | Dated regulatory events / timeline. Good for "what's coming". |
+| `lookup_recent_updates(...)` | Recent published changes to neimo.'s structured data, newest first, with the value before and after. Good for "what changed lately". |
 | `compare_regulations(...)` | Same topic across multiple markets — for "how does this differ in X vs Y" teaching turns. |
 | `lookup_state_laws(...)` | US state-level laws (e.g. California AADC, state privacy acts). |
 | `get_metric_glossary(...)` | Definitions of metrics/terms used in the KB. |

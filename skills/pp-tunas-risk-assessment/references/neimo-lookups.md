@@ -8,7 +8,8 @@ the **downstream obligations** a HIGH/LOW profile triggers (age assurance, paren
 consent, monetization floors, notices, trust & safety, penalties) and supply the
 **verbatim citations** — for the *supplementary* Obligations and Sources tabs, not the
 worksheet. Also use it to check whether the regulation has been **amended** since the
-embedded catalog version (`lookup_recent_updates` / `lookup_regulation_events`, ID).
+embedded catalog version (`lookup_recent_updates(market="ID")` /
+`lookup_legal_horizons(jurisdiction="ID")`).
 
 This file is the *method* for that grounding. The values neimo. returns are the
 *answers*. Never substitute the illustrative numbers below for a live lookup — they
@@ -33,7 +34,7 @@ search for them by the bare name via ToolSearch if they aren't already loaded):
   `verificationStatus`.
 - `search_kb_semantic(query, market?)` / `search_primary_sources(query, countryCodes?)`
   — for enforcement actions or the actual statutory wording when you need it.
-- `lookup_recent_updates` / `lookup_regulation_events` — to check whether anything
+- `lookup_recent_updates` / `lookup_legal_horizons` — to check whether anything
   has changed recently (useful given how new PP Tunas is).
 - `submit_feedback` — only when the user expresses doubt/praise/missing-coverage;
   ask them first, verbatim: "Would you like to share that feedback with the

@@ -16,7 +16,7 @@ description: >-
   in Indonesia when they don't say 'PP Tunas'.
 license: Apache-2.0
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   vendor: k-ID
 ---
 
@@ -75,8 +75,8 @@ Permen 9/2026; the skill surfaces them — grounded live in neimo. — in the
 
 Before filing, also sanity-check the embedded catalog against the current gazette:
 the regulation is new and the English text here is an unofficial translation. Use
-`lookup_recent_updates` / `lookup_regulation_events` (market `ID`) to check nothing
-has been amended since `version: kepmen142-2026-v1`.
+`lookup_recent_updates` (market `ID`) and `lookup_legal_horizons` (jurisdiction `ID`)
+to check nothing has been amended since `version: kepmen142-2026-v1`.
 
 ## Workflow
 

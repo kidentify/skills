@@ -3,7 +3,7 @@ name: regulation-tutor
 description: "Personalized tutor for kids-privacy and online-safety regulation - COPPA, GDPR-Kids, UK AADC/OSA, Brazil ECA Digital, Australia, US state laws, and 200+ neimo. markets. Runs intake (role, product, markets, depth, format), then teaches from live neimo. MCP results - explorer, conversation, presentation, quiz, or cheat-sheet - with cited sources only. Use when someone wants to learn or be trained on youth-safety rules (e.g. train me on COPPA, ECA Digital, age assurance). Use even if they do not say training or neimo. Not for config audits (compliance-health-check), setup (kid-one-shot), or slide decks."
 license: Apache-2.0
 metadata:
-  version: "0.1.0"
+  version: "0.1.1"
   vendor: k-ID
 ---
 
@@ -221,18 +221,19 @@ The rhythm of a good lesson:
    `lookup_regulation(market, domain, field?)` when you know the market and
    section. Use `discover_sections(market)` first if you're unsure what exists.
    Use `search_kb_semantic` for enforcement actions and cross-cutting questions
-   ("FTC COPPA settlement", "loot box rules"), and `lookup_legal_horizons` /
-   `lookup_regulation_events` for recent developments and what's coming. Pull
+   ("FTC COPPA settlement", "loot box rules"), `lookup_legal_horizons` for
+   recent developments and what's coming, and `lookup_recent_updates` for what
+   changed recently in neimo.'s own data. Pull
    *targeted* sections — a full `market_profile` can run to 100K+ characters and
    will swamp the lesson; reserve it for when the learner genuinely wants the
    whole landscape, and even then summarize, don't dump.
 
-   **Legal Horizons covers a fixed, short jurisdiction list — not all 200+
-   markets.** It returns the supported set in `availableJurisdictions` (at time of
-   writing ~14: AE, AU, BR, ES, FR, ID, IN, MY, TR, UK, US federal/state, VN).
-   Always read that field. If the learner's market is NOT in it (e.g. Japan,
-   Korea, Canada, Germany), do not imply you checked "what's coming" — instead
-   fall back to the structured `upcoming-changes` section via `lookup_regulation`
+   **Legal Horizons covers a partial jurisdiction list, not all 200+
+   markets.** It returns the covered set in `availableJurisdictions`, which
+   grows as new editions publish. Always read that field. If the learner's
+   market is NOT in it (e.g. Japan, Korea, Germany), do not imply you checked
+   "what's coming"; instead fall back to the structured `upcoming-changes`
+   section via `lookup_regulation`
    (it's per-market and may exist where Horizons doesn't), and if that's empty
    too, say plainly "neimo. has no horizons/upcoming-changes coverage for this
    market yet" rather than implying nothing is on the way. Absence of a horizons
@@ -396,10 +397,12 @@ row shape you'll get back. The essentials:
   questions, when you don't know the section.
 - `lookup_online_safety_resources(topic, market?)` — broad search across all KBs.
 - `market_profile(market)` — whole-country snapshot; large, use sparingly.
-- `lookup_legal_horizons(...)` / `lookup_regulation_events(...)` — recent and
-  upcoming developments. **Covers a fixed ~14-jurisdiction list only** (see
+- `lookup_legal_horizons(...)` — recent and upcoming developments. **Covers a
+  partial jurisdiction list that grows with each edition** (see
   `availableJurisdictions` in the result); for any market outside it, fall back to
   the `upcoming-changes` section and don't imply horizons were checked.
+- `lookup_recent_updates(...)` — recent published changes to neimo.'s own data,
+  with the old and new value. For "what changed lately" turns.
 - `compare_regulations(...)` — same topic across markets, for "how does this
   differ in X vs Y" turns.
 - `submit_feedback(...)` — only after the learner says yes to sharing feedback.

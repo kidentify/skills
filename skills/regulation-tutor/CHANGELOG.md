@@ -1,5 +1,11 @@
 # Regulation Tutor — changelog
 
+## 0.1.1
+
+Recent developments now come from `lookup_legal_horizons` and `lookup_recent_updates`,
+not an internal-only tool that customer MCP clients cannot list. Legal Horizons coverage
+is read from `availableJurisdictions` instead of a fixed list.
+
 ## 0.1.0 — initial release
 
 First published version in kidentify/skills. Personalized tutor for online-safety
