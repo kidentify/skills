@@ -252,6 +252,18 @@ Load skills in this order based on the integration shape.
   challenge-initiation logic out of the box; custom UIs have to be
   wired to the same compliance engine via the feature skills'
   gotchas and defaults — read them before shipping.
+- **Plan for integration interruptions; fail safe, not fail open.**
+  Age gate, challenge, session, and verification calls sit in the
+  user's access path. Decide up front what happens if a call times
+  out or can't complete (network issue, server problem): users with
+  a stored session or verification result keep working, users whose
+  age or consent isn't known yet get the most restrictive access
+  (permission-gated or age-restricted features stay locked, the rest
+  of the product works), and the UI shows a clear "try again shortly"
+  message instead of a generic error. Never skip the age gate,
+  consent, or verification to get around an interruption: that can
+  put the product out of compliance. See
+  [`docs.k-id.com/cdk/best-practices#handling-integration-interruptions`](https://docs.k-id.com/cdk/best-practices#handling-integration-interruptions).
 
 ## Doc-first contract
 
@@ -274,6 +286,9 @@ you built.
    `session.permissions` renders with the correct lock label.
 3. The server rejects privileged requests without a valid
    `session.permissions[name].enabled === true` check.
+4. With k-ID calls forced to time out, a player with a cached session
+   keeps access, and a new player gets restricted access with a
+   retry message, not an error page or full access.
 
 ### Shape B — Standalone AgeKit+
 
@@ -286,6 +301,9 @@ you built.
    `/age-verification/get-status?id=<id>` returns the final result —
    and the product acts on PASS / FAIL correctly.
 4. The API key is never reachable from the browser.
+5. With k-ID calls forced to time out, the age-restricted feature
+   stays locked, the rest of the product works, and the user sees a
+   retry message.
 
 If any checks fail, load `k-id-server-trust-boundary` and start again
 from the pre-flight checklist.
