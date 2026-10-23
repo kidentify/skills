@@ -3,7 +3,7 @@ name: k-id-age-verification
 description: "Implements k-ID age verification and assurance for all three CDK patterns: (1) standalone AgeKit+ with no session (single age-proof — UK OSA 18+, age-restricted downloads, Australia social-media minimum age), (2) unverified-adult verification after the gate in a sessioned integration, (3) per-permission threshold verification (Brazil ECA Digital loot-boxes / targeted ads, UK OSA 18+, Australia social media, any verifiedAgeThreshold regime). Covers /age-verification/perform-access-age-verification (with or without sessionId), /session/upgrade returning CHALLENGE_SESSION_UPGRADE_BY_AGE_ASSURANCE, iframe modal (never window.open), in-app prompt, new-tab return-path detection (server poll + BroadcastChannel + visibility wake), result via webhook or polling, race-free session update. References AgeKit+ waterfall and ConnectID. Use for AgeKit+, unverified sessions, verifiedAgeThreshold, highly effective age assurance, or \"user verified but app never unlocked\". Not the initial gate or consent (see sibling skills)."
 license: Apache-2.0
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   vendor: k-ID
 ---
 
@@ -143,6 +143,22 @@ Content-Type: application/json
 }
 ```
 
+For a specific numeric threshold (alcohol at 21 in the US, 20 in
+Japan, 19 in South Korea), send `criteria.age` instead of
+`ageCategory`:
+
+```json
+{
+  "jurisdiction": "US",
+  "criteria": { "age": 21 }
+}
+```
+
+`criteria` takes exactly these two forms: `age` (integer) or
+`ageCategory` (`ADULT` or `DIGITAL_YOUTH_OR_ADULT`). There is no
+`minimumAge` field — `criteria.minimumAge` and an empty `criteria`
+both return 400 `INVALID_INPUT` "age or age category is required".
+
 Add optional fields when useful:
 
 - `subject.email` to reuse a prior k-ID verification result if one
@@ -169,8 +185,8 @@ Content-Type: application/json
 }
 ```
 
-Top-level `age`, `ageCategory`, or `minimumAge` are rejected with
-400 in either shape. All age inputs live inside `criteria`.
+Top-level `age` or `ageCategory` are rejected with 400 in either
+shape. Both live inside `criteria`.
 
 Response always includes `id`, `url`, and `shortUrl`. Treat
 `shortUrl` as opaque; don't rebuild or re-shorten the full `url`.
@@ -271,9 +287,10 @@ What `onVerified` does depends on the pattern.
   because the sessioned examples always show it — forcing a session
   into a standalone flow adds complexity for nothing.
 - **Body for `perform-access-age-verification` is nested.** All
-  age inputs go under `criteria` (`criteria.ageCategory`,
-  `criteria.minimumAge`). Top-level fields are rejected with 400
-  in every pattern.
+  age inputs go under `criteria` (`criteria.ageCategory` or
+  `criteria.age`). Top-level fields are rejected with 400 in every
+  pattern. The numeric field is `age`, not `minimumAge` —
+  `criteria.minimumAge` is also rejected with 400.
 - **`verifiedAgeThreshold` permissions are never `GUARDIAN`-managed.**
   Parental consent cannot unlock a Brazil loot-box or a UK OSA 18+
   feature — only a successful age assurance can. A consent

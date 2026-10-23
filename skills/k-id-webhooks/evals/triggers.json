@@ -1,6 +1,6 @@
 {
   "skill_name": "k-id-webhooks",
-  "description_version": "1.0.0",
+  "description_version": "1.0.1",
   "runs_per_query": 3,
   "threshold": {
     "positive_trigger_rate": 0.5,
@@ -16,7 +16,7 @@
     "Add replay protection to our webhook receiver.",
     "How do I push Session.ChangePermissions into our session store?",
     "What's the right response code for an invalid webhook signature?",
-    "Parse ParentalConsent.Granted and refresh the affected session."
+    "Handle Verification.Revoke and reset the session to unverified."
   ],
   "should_not_trigger": [
     "Poll /challenge/get-status inside our consent modal.",
