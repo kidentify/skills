@@ -252,17 +252,19 @@ Load skills in this order based on the integration shape.
   challenge-initiation logic out of the box; custom UIs have to be
   wired to the same compliance engine via the feature skills'
   gotchas and defaults — read them before shipping.
-- **Plan for integration interruptions; fail safe, not fail open.**
-  Age gate, challenge, session, and verification calls sit in the
-  user's access path. Decide up front what happens if a call times
-  out or can't complete (network issue, server problem): users with
-  a stored session or verification result keep working, users whose
-  age or consent isn't known yet get the most restrictive access
-  (permission-gated or age-restricted features stay locked, the rest
-  of the product works), and the UI shows a clear "try again shortly"
-  message instead of a generic error. Never skip the age gate,
-  consent, or verification to get around an interruption: that can
-  put the product out of compliance. See
+- **Plan for integration interruptions.** Age gate, challenge,
+  session, and verification calls sit in the user's access path.
+  Decide up front what happens if a call times out or can't complete
+  (network issue, server problem). Users with a stored session or
+  verification result keep working. When age or consent can't be
+  confirmed, treat the user as a child and restrict only what the
+  check gates: don't collect a child's personal data yet, keep
+  age-restricted features locked, apply child-appropriate high-privacy
+  defaults, and let everything ungated work normally. Show a clear
+  "try again shortly" message instead of a generic error. Never skip
+  the age gate, consent, or verification to get around an
+  interruption. Which steps can continue and be verified later depends
+  on the jurisdiction, so the product's compliance team decides. See
   [`docs.k-id.com/cdk/best-practices#handling-integration-interruptions`](https://docs.k-id.com/cdk/best-practices#handling-integration-interruptions).
 
 ## Doc-first contract
@@ -287,8 +289,9 @@ you built.
 3. The server rejects privileged requests without a valid
    `session.permissions[name].enabled === true` check.
 4. With k-ID calls forced to time out, a player with a cached session
-   keeps access, and a new player gets restricted access with a
-   retry message, not an error page or full access.
+   keeps access, and a new player is treated as a child: gated
+   features stay locked, ungated features work, and a retry message
+   shows instead of an error page.
 
 ### Shape B — Standalone AgeKit+
 
