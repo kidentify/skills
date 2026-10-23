@@ -317,6 +317,5 @@ Canonical references:
 - [`POST /challenge/generate-otp`](https://docs.k-id.com/api/endpoints/generate-otp)
 - [`GET /challenge/get`](https://docs.k-id.com/api/endpoints/get-challenge)
 - [`GET /challenge/get-status`](https://docs.k-id.com/api/endpoints/get-challenge-status)
-- [`parentalconsent.granted` webhook](https://docs.k-id.com/events/webhooks/event-types/parentalconsent-granted)
 - [`challenge.statechange` webhook](https://docs.k-id.com/events/webhooks/event-types/challenge-statechange)
 - [Choose integration: CDK widgets vs custom UX](https://docs.k-id.com/get-started/choose-integration)
