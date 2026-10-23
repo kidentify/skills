@@ -38,6 +38,6 @@
     "Handle /challenge/send-email.",
     "Configure the test vs prod API key env variables.",
     "Render the permission list after a successful session.",
-    "Wire up parentalconsent-granted webhooks."
+    "Wire up Challenge.StateChange webhooks."
   ]
 }

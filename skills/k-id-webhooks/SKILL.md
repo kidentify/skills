@@ -1,7 +1,7 @@
 ---
 name: k-id-webhooks
 description: >
-  Implements a k-ID webhook receiver — HMAC-SHA256 signature verification against the RAW request body (not the parsed JSON), timestamp tolerance, idempotency keyed by event ID, and per-event handlers for Challenge.StateChange, Verification.Result, Verification.Revoke, ParentalConsent.Granted, Session.ChangePermissions, Session.Delete, and Test. Use when building or debugging a webhook endpoint for k-ID, when the test webhook returns 401, when events are received but not acted on, or when sessions drift from Family Connect changes. Not for client-side postMessage handling (see k-id-age-verification) and not for in-app polling (see k-id-consent-and-challenges or k-id-sessions-and-permissions).
+  Implements a k-ID webhook receiver — HMAC-SHA256 signature verification against the RAW request body (not the parsed JSON), timestamp tolerance, idempotency keyed by event ID, and per-event handlers for Challenge.StateChange, Verification.Result, Verification.Revoke, Session.ChangePermissions, Session.Delete, and Test. Use when building or debugging a webhook endpoint for k-ID, when the test webhook returns 401, when events are received but not acted on, or when sessions drift from Family Connect changes. Not for client-side postMessage handling (see k-id-age-verification) and not for in-app polling (see k-id-consent-and-challenges or k-id-sessions-and-permissions).
 license: Apache-2.0
 metadata:
   version: "1.0.1"
@@ -104,7 +104,6 @@ the 200 response.
 |---|---|
 | `Test` | Return 200. No state change. |
 | `Challenge.StateChange` | Update stored challenge status; if `PASS`, trigger session rematerialization. |
-| `ParentalConsent.Granted` | Refresh affected session (`GET /session/get`). |
 | `Verification.Result` | Mark the session as verified and restore full permissions. |
 | `Verification.Revoke` | Return the session to the unverified-adult state; clear verified age. |
 | `Session.ChangePermissions` | Refresh the session; push down to connected clients. |
@@ -196,8 +195,7 @@ Canonical references:
 - [Webhooks overview](https://docs.k-id.com/events/webhooks/overview)
 - [`Challenge.StateChange`](https://docs.k-id.com/events/webhooks/event-types/challenge-statechange)
 - [`Verification.Result`](https://docs.k-id.com/events/webhooks/event-types/verification-result)
-- [`Verification.Revoke`](https://docs.k-id.com/events/webhooks/overview)
-- [`ParentalConsent.Granted`](https://docs.k-id.com/events/webhooks/overview)
+- [`Verification.Revoke`](https://docs.k-id.com/events/webhooks/event-types/verification-revoke)
 - [`Session.ChangePermissions`](https://docs.k-id.com/events/webhooks/event-types/session-changepermissions)
 - [`Session.Delete`](https://docs.k-id.com/events/webhooks/event-types/session-delete)
 - [`Test`](https://docs.k-id.com/events/webhooks/event-types/test)
