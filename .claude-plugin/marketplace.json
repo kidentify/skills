@@ -10,7 +10,7 @@
       "name": "k-id-skills",
       "source": "./",
       "description": "k-ID integration skills bundle covering both full sessioned integrations (age gate, consent, age verification, sessions, permissions, webhooks) and standalone AgeKit+ age assurance. Supports both CDK approaches — k-ID widgets (age gate, end-to-end, manage permissions, data notices) and fully custom UX workflows — plus server trust-boundary and mobile-native companion skills.",
-      "version": "1.0.0"
+      "version": "1.0.1"
     },
     {
       "name": "neimo-skills",

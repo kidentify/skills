@@ -83,6 +83,17 @@
         "Response handles INVALID_INPUT by creating a fresh verification, not by retrying the old URL",
         "Response does not suggest client-side rebuilding of the verification URL"
       ]
+    },
+    {
+      "id": 8,
+      "prompt": "We sell alcohol online with guest checkout, no accounts. Buyers must be 21+ in the US, 20+ in Japan, and 19+ in South Korea. Show the k-ID request body for the US check.",
+      "expected_output": "Standalone AgeKit+ (Pattern 1). Server-side POST to /age-verification/perform-access-age-verification with { jurisdiction: 'US', criteria: { age: 21 } } and no sessionId; per-country thresholds go in criteria.age (20 for JP, 19 for KR).",
+      "assertions": [
+        "Request body puts the numeric threshold in criteria.age (e.g. criteria: { age: 21 })",
+        "Response does NOT use minimumAge anywhere in the request body",
+        "Response does NOT use ageCategory: 'ADULT' as a substitute for the 21 threshold",
+        "Response does NOT include a sessionId in the request body"
+      ]
     }
   ]
 }

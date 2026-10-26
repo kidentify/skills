@@ -4,7 +4,7 @@
     {
       "id": 1,
       "prompt": "Build a Next.js App Router webhook endpoint for k-ID. Verify signatures and handle the main event types.",
-      "expected_output": "Route handler that reads the raw body, computes HMAC-SHA256 over timestamp + rawBody with the webhook secret, compares with timingSafeEqual, rejects stale timestamps, handles Test/Challenge/Verification/ParentalConsent/Session events, is idempotent on event ID, and returns 200 fast.",
+      "expected_output": "Route handler that reads the raw body, computes HMAC-SHA256 over timestamp + rawBody with the webhook secret, compares with timingSafeEqual, rejects stale timestamps, handles Test/Challenge/Verification/Session events, is idempotent on event ID, and returns 200 fast.",
       "assertions": [
         "Signature is computed over the raw request body, not parsed-and-re-stringified JSON",
         "HMAC input is timestamp + rawBody using crypto.createHmac with the webhook secret",
