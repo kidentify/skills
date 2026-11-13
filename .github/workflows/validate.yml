@@ -22,7 +22,7 @@ jobs:
       - name: Validate SKILL.md files with skills-ref
         run: |
           set -euo pipefail
-          python3 -m pip install 'skills-ref>=0.1.1'
+          python3 -m pip install 'skills-ref==0.1.1'
           failed=0
           for d in skills/*/; do
             echo "Validating ${d}..."
