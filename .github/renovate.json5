@@ -1,36 +1,18 @@
-// Renovate runs from kidentify/renovate-bot-self-hosted, which also holds the
-// shared preset this extends. Rules here apply after the preset's.
-// https://docs.renovatebot.com/configuration-options/
+// Renovate runs from kidentify/renovate-bot-self-hosted. Its preset sets the
+// schedule, the 7-day release age and which updates wait for a person; this
+// file holds only what is particular to this repository.
+// https://github.com/kidentify/renovate-bot-self-hosted#enrolling-a-repository
 {
   $schema: 'https://docs.renovatebot.com/renovate-schema.json',
-  extends: ['config:best-practices', 'local>kidentify/renovate-bot-self-hosted'],
-  // Updates open as pull requests, as Dependabot's did, instead of waiting
-  // on the Dependency Dashboard. The preset still labels them needs-human,
-  // merges none of them and holds majors on the dashboard.
-  dependencyDashboardApproval: false,
+  extends: [
+    'local>kidentify/renovate-bot-self-hosted',
+    // Dependabot's github-actions ecosystem updated only the actions and
+    // reusable workflows, not the tool versions and runners in workflows.
+    'local>kidentify/renovate-bot-self-hosted:actions-only',
+    // In one weekly pull request, as Dependabot grouped them.
+    'local>kidentify/renovate-bot-self-hosted:group-actions',
+  ],
   // The ecosystem Dependabot covered. Others are left for a deliberate
   // change.
   enabledManagers: ['github-actions'],
-  packageRules: [
-    {
-      // Dependabot's 7-day cooldown, as two rules that leave out only an
-      // action's digest update: that means a moved tag, which the preset
-      // sends to a person at once.
-      matchUpdateTypes: ['major', 'minor', 'patch', 'pin', 'pinDigest'],
-      minimumReleaseAge: '7 days',
-    },
-    {
-      // Every digest but an action's, such as an image's new build.
-      matchUpdateTypes: ['digest'],
-      matchDatasources: ['!github-tags', '!github-releases'],
-      minimumReleaseAge: '7 days',
-    },
-    {
-      // Dependabot's weekly github-actions group. Digest updates keep the
-      // preset's own group.
-      matchManagers: ['github-actions'],
-      matchUpdateTypes: ['major', 'minor', 'patch', 'pin', 'pinDigest'],
-      groupName: 'github-actions',
-    },
-  ],
 }
