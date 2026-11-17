@@ -1,0 +1,11 @@
+// Renovate runs from kidentify/renovate-bot-self-hosted. Its preset sets the
+// schedule, the 7-day release age, and which updates wait for a person; this
+// file holds what is particular to this repository.
+// https://github.com/kidentify/renovate-bot-self-hosted#enrolling-a-repository
+{
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  extends: [
+    'local>kidentify/renovate-bot-self-hosted',
+    'local>kidentify/renovate-bot-self-hosted:group-actions',
+  ],
+}
