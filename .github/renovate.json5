@@ -1,18 +1,11 @@
 // Renovate runs from kidentify/renovate-bot-self-hosted. Its preset sets the
-// schedule, the 7-day release age and which updates wait for a person; this
-// file holds only what is particular to this repository.
+// schedule, the 7-day release age, and which updates wait for a person; this
+// file holds what is particular to this repository.
 // https://github.com/kidentify/renovate-bot-self-hosted#enrolling-a-repository
 {
   $schema: 'https://docs.renovatebot.com/renovate-schema.json',
   extends: [
     'local>kidentify/renovate-bot-self-hosted',
-    // Dependabot's github-actions ecosystem updated only the actions and
-    // reusable workflows, not the tool versions and runners in workflows.
-    'local>kidentify/renovate-bot-self-hosted:actions-only',
-    // In one weekly pull request, as Dependabot grouped them.
     'local>kidentify/renovate-bot-self-hosted:group-actions',
   ],
-  // The ecosystem Dependabot covered. Others are left for a deliberate
-  // change.
-  enabledManagers: ['github-actions'],
 }
