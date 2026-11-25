@@ -76,7 +76,8 @@ Permen 9/2026; the skill surfaces them — grounded live in neimo. — in the
 Before filing, also sanity-check the embedded catalog against the current gazette:
 the regulation is new and the English text here is an unofficial translation. Use
 `lookup_recent_updates` (market `ID`) and `lookup_legal_horizons` (jurisdiction `ID`)
-to check nothing has been amended since `version: kepmen142-2026-v1`.
+to check nothing has been amended since `version: kepmen142-2026-v2`, which includes
+the Kepmen 219/2026 amendment.
 
 ## Workflow
 
@@ -162,9 +163,9 @@ parameters presence is the risk (weight in the YES column), but for **protective
 parameters — block/report (KN06, GP09), security measures/DPIA/privacy notice/DPO
 (DP03/04/06/07), checkpoints & clear end goals (AD10/11), safe-volume/night-mode
 defaults (GF03, GF04, GF08) — the weight applies when the control is **absent**.
-GF01 (no clear time limit) and GF02 (notifications during sleep hours) are risks
-when present: the gazette tables print their weight under NO, but the catalog applies
-it under YES, as the worksheet instruction says. Tell counsel about this conflict.
+GF01 (no clear time limit) is a risk when present: Kepmen 219/2026 moved its weight to
+YES. GF02 (notifications during sleep hours) reads the same way, but the amended table
+still prints its weight under NO. The worksheet flags GF02; confirm it with counsel.
 
 ### 5. Let the script score and determine — don't hand-compute
 

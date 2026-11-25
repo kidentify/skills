@@ -2,10 +2,13 @@
 
 ## 1.0.2
 
-- GF01 and GF02 now score their weight when the condition is found. The gazette tables
-  print it under NO, but both parameters describe a risk when present, and the worksheet
-  instruction applies the weight under YES.
-- GF01 weight is 23.53, as the gazette prints it, not 25.53. Aspect (g) now sums to 100%.
+- The catalog follows Kepmen 219/2026, which amends Appendix II of Kepmen 142/2026.
+- GF01 now applies its weight when found, and the weight is 23.53, as the gazette prints
+  it. Before, it applied 25.53 when not found.
+- Kepmen 219 deleted the worksheet instruction that conflicted with the parameter tables.
+  The tables are now the only scoring rule.
+- GF02 is unchanged: the amended table still prints its weight under NO. The worksheet
+  keeps its polarity flag for counsel.
 
 ## 1.0.1
 

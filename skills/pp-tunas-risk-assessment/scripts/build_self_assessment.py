@@ -410,6 +410,10 @@ def build(data, catalog, out_path):
                 cell = wsa.cell(rr, cc)
                 cell.border = BORDER
                 cell.alignment = CENTER if cc in (1, 5, 6, 7, 10) else WRAP
+            if pr.get("polarity_flag"):
+                fcell = wsa.cell(rr, 4)
+                fcell.value = pr["assessment_parameter"] + "  [⚠ POLARITY: " + pr["polarity_flag"] + "]"
+                fcell.font = Font(color="9C0006")
             rr += 1
 
         # subtotal row

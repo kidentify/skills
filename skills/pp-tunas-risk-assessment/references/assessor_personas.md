@@ -90,7 +90,8 @@ security and personal-data protection, legal, and digital marketing (Ch. II.B.4)
     variable rewards, disappearing content, scary content.
   - **Child physiologist** — aspect **(g) physiological** (GF01–GF08): continuous
     access, sleep-hour notifications, night-mode/safe-volume defaults, autoplay,
-    repetitive actions, dangerous-challenge enablement.
+    repetitive actions, dangerous-challenge enablement. (Resolve the GF02 polarity
+    flag here.)
   - **Information-technology / system-security expert** — supports personas 1 and 4 on
     technical configurations and security measures.
   - **Personal-data-protection expert** — supports persona 4 on the DPIA, lawful

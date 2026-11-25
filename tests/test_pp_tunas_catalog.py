@@ -7,7 +7,10 @@ CATALOG = (
     / "skills/pp-tunas-risk-assessment/references/kepmen142_parameters.json"
 )
 ROUNDING_TOLERANCE = 0.02
-RISK_WHEN_PRESENT = ("GF01", "GF02")
+KEPMEN_219_GF_ROWS = {
+    "GF01": (23.53, "YES"),
+    "GF02": (20.59, "NO"),
+}
 
 
 def load_parameters():
@@ -22,12 +25,12 @@ class KepmenCatalogTest(unittest.TestCase):
             with self.subTest(aspect=key):
                 self.assertAlmostEqual(total, 100.0, delta=ROUNDING_TOLERANCE)
 
-    def test_gf01_gf02_weight_applies_when_found(self):
+    def test_gf_rows_match_kepmen_219(self):
         by_code = {p["code"]: p for p in load_parameters()["g"]}
-        for code in RISK_WHEN_PRESENT:
+        for code, (weight, column) in KEPMEN_219_GF_ROWS.items():
             with self.subTest(code=code):
-                self.assertEqual(by_code[code]["weight_column"], "YES")
-                self.assertNotIn("polarity_flag", by_code[code])
+                self.assertEqual(by_code[code]["weight"], weight)
+                self.assertEqual(by_code[code]["weight_column"], column)
 
 
 if __name__ == "__main__":
