@@ -101,7 +101,9 @@ jobs:
           persist-credentials: false
 
       - name: Run unit tests
-        run: python3 -m unittest discover -s tests -v
+        run: |
+          python3 -m pip install 'openpyxl==3.1.5'
+          python3 -m unittest discover -s tests -v
 
   validate-description-length:
     name: SKILL.md description byte limit (ChatGPT)

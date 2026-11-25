@@ -9,6 +9,7 @@
   The tables are now the only scoring rule.
 - GF02 is unchanged: the amended table still prints its weight under NO. The worksheet
   keeps its polarity flag for counsel.
+- The Determination sheet warns when a parameter with a polarity flag can change the profile.
 
 ## 1.0.1
 

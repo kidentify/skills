@@ -158,6 +158,15 @@ def _hdr(cell, fill=SLATE):
     cell.border = BORDER
 
 
+def _warning_row(ws, r, text):
+    ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=6)
+    w = ws.cell(r, 1, text)
+    w.font = Font(bold=True, color="9C0006", size=10)
+    w.fill = PatternFill("solid", fgColor=BLANK_FILL)
+    w.alignment = WRAP
+    w.border = BORDER
+
+
 def _weight_applies(status, weight_column):
     """The weight counts when the assessor's real-world finding lands in the
     column where the law prints the weight.
@@ -218,8 +227,8 @@ def build(data, catalog, out_path):
     ws.row_dimensions[1].height = 32
     ws.merge_cells("A2:F2")
     s = ws["A2"]
-    s.value = ("Instrument fixed by Kepmen Komdigi No. 142/2026, Appendix II — "
-               "implementing PP No. 17/2025 (PP TUNAS) and Permen No. 9/2026.")
+    s.value = ("Instrument fixed by Kepmen Komdigi No. 142/2026, Appendix II, as amended by "
+               "Kepmen No. 219/2026 — implementing PP No. 17/2025 (PP TUNAS) and Permen No. 9/2026.")
     s.font = Font(italic=True, color=WHITE, size=9)
     s.fill = PatternFill("solid", fgColor=SLATE)
     s.alignment = CENTER
@@ -293,13 +302,14 @@ def build(data, catalog, out_path):
     ws.row_dimensions[r].height = 28
     r += 1
     if any_incomplete:
-        ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=6)
-        w = ws.cell(r, 1, f"WARNING: {any_incomplete} parameter(s) are unanswered. "
-                          f"Komdigi rejects incomplete worksheets — answer every parameter before filing.")
-        w.font = Font(bold=True, color="9C0006", size=10)
-        w.fill = PatternFill("solid", fgColor=BLANK_FILL)
-        w.alignment = WRAP
-        w.border = BORDER
+        _warning_row(ws, r, f"WARNING: {any_incomplete} parameter(s) are unanswered. "
+                            f"Komdigi rejects incomplete worksheets — answer every parameter before filing.")
+        r += 1
+    flagged = [row["p"]["code"] for _, rows, *_ in aspect_results
+               for row in rows if row["p"].get("polarity_flag")]
+    if flagged:
+        _warning_row(ws, r, f"CHECK BEFORE FILING: {', '.join(flagged)} has a YES/NO polarity "
+                            f"conflict in the law that can change this profile. Confirm it with counsel.")
         r += 1
     r += 1
     ws.merge_cells(start_row=r, start_column=1, end_row=r + 1, end_column=6)
