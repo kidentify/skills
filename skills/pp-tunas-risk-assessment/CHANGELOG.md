@@ -1,5 +1,10 @@
 # pp-tunas-risk-assessment — release notes
 
+## 1.0.3
+
+- The Determination sheet warning no longer says GF02 can change every profile.
+  It asks counsel to confirm the GF02 polarity.
+
 ## 1.0.2
 
 - The catalog follows Kepmen 219/2026, which amends Appendix II of Kepmen 142/2026.

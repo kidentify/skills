@@ -308,8 +308,8 @@ def build(data, catalog, out_path):
     flagged = [row["p"]["code"] for _, rows, *_ in aspect_results
                for row in rows if row["p"].get("polarity_flag")]
     if flagged:
-        _warning_row(ws, r, f"CHECK BEFORE FILING: {', '.join(flagged)} has a YES/NO polarity "
-                            f"conflict in the law that can change this profile. Confirm it with counsel.")
+        _warning_row(ws, r, f"CHECK BEFORE FILING: the law leaves the YES/NO polarity of "
+                            f"{', '.join(flagged)} unclear. Confirm it with counsel.")
         r += 1
     r += 1
     ws.merge_cells(start_row=r, start_column=1, end_row=r + 1, end_column=6)

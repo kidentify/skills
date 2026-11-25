@@ -16,7 +16,7 @@ description: >-
   in Indonesia when they don't say 'PP Tunas'.
 license: Apache-2.0
 metadata:
-  version: "1.0.2"
+  version: "1.0.3"
   vendor: k-ID
 ---
 
