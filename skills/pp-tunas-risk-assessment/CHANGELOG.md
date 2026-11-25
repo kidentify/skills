@@ -1,5 +1,16 @@
 # pp-tunas-risk-assessment — release notes
 
+## 1.0.2
+
+- The catalog follows Kepmen 219/2026, which amends Appendix II of Kepmen 142/2026.
+- GF01 now applies its weight when found, and the weight is 23.53, as the gazette prints
+  it. Before, it applied 25.53 when not found.
+- Kepmen 219 deleted the worksheet instruction that conflicted with the parameter tables.
+  The tables are now the only scoring rule.
+- GF02 is unchanged: the amended table still prints its weight under NO. The worksheet
+  keeps its polarity flag for counsel.
+- The Determination sheet warns when a parameter with a polarity flag can change the profile.
+
 ## 1.0.1
 
 - The amendment check uses `lookup_recent_updates` and `lookup_legal_horizons`, not an
