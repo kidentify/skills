@@ -91,6 +91,18 @@ jobs:
           fi
           echo "All docs.k-id.com links OK"
 
+  catalog-tests:
+    name: Skill reference data tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          persist-credentials: false
+
+      - name: Run unit tests
+        run: python3 -m unittest discover -s tests -v
+
   validate-description-length:
     name: SKILL.md description byte limit (ChatGPT)
     runs-on: ubuntu-latest

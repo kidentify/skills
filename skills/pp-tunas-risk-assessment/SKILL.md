@@ -16,7 +16,7 @@ description: >-
   in Indonesia when they don't say 'PP Tunas'.
 license: Apache-2.0
 metadata:
-  version: "1.0.1"
+  version: "1.0.2"
   vendor: k-ID
 ---
 
@@ -161,9 +161,10 @@ Mind the scoring polarity (the script handles it; you just report reality): for 
 parameters presence is the risk (weight in the YES column), but for **protective**
 parameters — block/report (KN06, GP09), security measures/DPIA/privacy notice/DPO
 (DP03/04/06/07), checkpoints & clear end goals (AD10/11), safe-volume/night-mode
-defaults (several GF) — the weight applies when the control is **absent**. Two
-physiological parameters (GF01, GF02) carry a translation-polarity flag; resolve
-their YES/NO direction against the Bahasa-Indonesia gazette text before filing.
+defaults (GF03, GF04, GF08) — the weight applies when the control is **absent**.
+GF01 (no clear time limit) and GF02 (notifications during sleep hours) are risks
+when present: the gazette tables print their weight under NO, but the catalog applies
+it under YES, as the worksheet instruction says. Tell counsel about this conflict.
 
 ### 5. Let the script score and determine — don't hand-compute
 

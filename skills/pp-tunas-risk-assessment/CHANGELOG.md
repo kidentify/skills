@@ -1,5 +1,12 @@
 # pp-tunas-risk-assessment — release notes
 
+## 1.0.2
+
+- GF01 and GF02 now score their weight when the condition is found. The gazette tables
+  print it under NO, but both parameters describe a risk when present, and the worksheet
+  instruction applies the weight under YES.
+- GF01 weight is 23.53, as the gazette prints it, not 25.53. Aspect (g) now sums to 100%.
+
 ## 1.0.1
 
 - The amendment check uses `lookup_recent_updates` and `lookup_legal_horizons`, not an
